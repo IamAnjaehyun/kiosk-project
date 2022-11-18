@@ -1,4 +1,4 @@
-package com.example.kioskproject.domain;
+package com.example.kiosk.domain;
 //메뉴에 대한 설명은 안넣어도 될 것 같아서 안넣었음.
 
 public class Menu {

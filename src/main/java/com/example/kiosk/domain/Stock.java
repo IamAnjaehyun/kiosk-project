@@ -1,4 +1,4 @@
-package com.example.kioskproject.domain;
+package com.example.kiosk.domain;
 //교수님이 말씀하신 공급처 안넣어도 된다고 판단. 안넣었음.
 
 public class Stock {

@@ -1,13 +1,13 @@
-package com.example.kioskproject;
+package com.example.kiosk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KioskProjectApplicationTests {
+class KioskApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
