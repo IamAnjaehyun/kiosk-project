@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키오스크프로젝트</title>
+    <link rel="stylesheet" media="all and (max-width: 1024px)" href="css/qrcode.css">
+    <style>
+
+    </style>
 </head>
 <body>
-index 페이지입니다.
+    <header>
+        <div class="top">
+            <div class="box"></div>
+            <div class="maintitle">00식당</div>
+            <div class="box"><button id="toadmin" type="button" onclick="location.href='admin_menu.html'">관리자화면</button></div>
+        </div>    
+    </header>
+    <main>
+        <div class="main">
+            <div class="qrcode">
+            </div>
+            <p class="text">
+                qr코드를 통해 핸드폰으로 주문해보세요!
+            </p>
+            <div class="withtablet">
+                <button id="toorder" type="button" onclick="location.href='user_order.html'">테블릿으로 주문하기</button>
+            </div>
+        </div>   
+    </main>
 </body>
 </html>

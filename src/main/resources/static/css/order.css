@@ -1,0 +1,126 @@
+body{
+    background-color: lightgray;
+}
+
+.top{
+    text-align: center;    
+}
+
+.menubutton{
+    width: 90%;
+    background-color: aliceblue;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.showmenu{
+    background-color: aliceblue;
+    width: 90%;
+    margin: auto;
+    height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-radius: 10px;
+
+}
+
+.menucontents{
+    background-color: lightgray;
+    width: 30%;
+    height: 15vh;
+    margin-top: 10px;
+    margin-left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menucontents>button{
+    border: 0;
+    background-color: 0;
+}
+
+img{
+    width: 110px;
+    height: auto;
+}
+
+.menucontents>div{
+    text-align: center;
+}
+
+.mainmenu, .sidemenu, .beverage{
+    background-color: lightblue;
+    width: 90%;
+    margin: auto;
+    height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.basket{
+    background-color: aliceblue;
+    margin: auto;
+    margin-top: 20px;
+    width: 90%;
+    height: 30vh;
+    border-radius: 10px;
+}
+.list{
+    background-color: antiquewhite;
+    margin: auto;
+    overflow-y: scroll;
+    height: 25vh;
+    border-radius: 10px;
+}
+#topay{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    width: 90%;
+    height: 50px;
+    background-color: steelblue;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+}
+
+#topay:hover{
+    background-color: #2d5cdd;
+    transition: 0.3s;
+}
+
+#main, #side, #beverage{
+    width:  30%;
+    height: 30px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    margin-bottom: 5px;
+}
+table{
+    margin: auto;
+    width: 100%;
+}
+td{
+    width: 25%;
+    text-align: center;
+    font-size: 25px;
+    height: 5vh;
+}
+
+label{
+    margin: auto;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.radioplace{
+    width: 25%;
+}

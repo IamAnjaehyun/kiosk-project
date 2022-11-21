@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/pay.css">
+    <title>결제화면</title>
+</head>
+<body>
+    <header>
+        <div class="top">
+            <h2>00식당</h5>
+        </div>
+    </header>
+    <main>
+        <div class="basket">
+            <div class="list">
+                <table cellpadding=1 >
+                    <tr>
+                        <th>메뉴 순번</th>
+                        <th>이름</th>
+                        <th>가격</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>햄버거</td>
+                        <td>9000원</td>
+                        <td><button type="button">-</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>햄버거</td>
+                        <td>9000원</td>
+                        <td><button type="button">-</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>햄버거</td>
+                        <td>9000원</td>
+                        <td><button type="button">-</button></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>햄버거</td>
+                        <td>9000원</td>
+                        <td><button type="button">-</button></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>햄버거</td>
+                        <td>9000원</td>
+                        <td><button type="button">-</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="getpay">
+            <div class="buttondiv">
+                <button id="card" type="button">카드</button>
+                <button id="cash" type="button">현금</button>
+            </div>
+            <div class="cardguide">
+                <table>
+                    <tr>
+                        <td>카드번호</td>
+                        <td><input type="text" class="cardinfo" id="cardnum" placeholder="'-'없이 번호를 입력하세요"></td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td><input type="text" class="cardinfo" id="cardpassword" placeholder="앞 2자리"></td>
+                    </tr>
+                    <tr>
+                        <td>CVC</td>
+                        <td><input type="text" class="cardinfo" id="cardcvc" placeholder="3자리"></td>
+                    </tr>
+                    <tr>
+                        <td>유효기간</td>
+                        <td><input type="text" class="cardinfo" id="carddate" placeholder="MM/YY"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cashguide" style="display: none;">
+                <span>카운터에서 계산해주세요!</span>
+            </div>
+            <div class="buttondiv">
+                <button type="submit" id="paycomplete">결제완료</button>
+                <button type="button" id="paycancel">결제취소</button>
+            </div>
+        </div>   
+    </main>
+</body>
+</html>

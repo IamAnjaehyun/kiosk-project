@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자:메뉴편집</title>
+    <link rel="stylesheet" href="./css/menu.css">
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="box"></div>
+            <div class="maintitle">메뉴 편집</div>
+            <div class="box">
+                <button id="toqrcode" type="button" onclick="location.href='main_qrcode.html'">qr코드화면</button>
+                <button id="tostock" type="button" onclick="location.href='admin_stock.html'">재고관리</button>
+            </div>
+        </div>    
+    </header>
+    <main>
+        <div class="main">
+            <div class="input">
+                <form method="post" action=" " >
+                    <select>
+                        <option value="main">메인메뉴</option>
+                        <option value="side">사이드메뉴</option>
+                        <option value="beverage">음료</option>
+                    </select>
+                    <input id="nameinput" type="text" placeholder="메뉴 이름">
+                    <input id="priceinput" type="number" step="1000" placeholder="메뉴 가격">
+                    <select class="stock">
+                        <option value="stock1">재고1</option>
+                        <option value="stock2">재고2</option>
+                        <option value="stock3">재고3</option>
+                    </select>
+                    <select class="stock">
+                        <option value="stock1">재고1</option>
+                        <option value="stock2">재고2</option>
+                        <option value="stock3">재고3</option>
+                    </select>
+                    <select class="stock">
+                        <option value="stock1">재고1</option>
+                        <option value="stock2">재고2</option>
+                        <option value="stock3">재고3</option>
+                    </select>
+                    <input id="submit" type="submit" value="입 력">
+                </form>
+            </div>
+            <div class="table"> <!-- 임의표 -->
+                <table border=1 cellpadding=1 >
+                    <tr>
+                        <th>메뉴 종류</th>
+                        <th id="menuoption">이름</th>
+                        <th>가격</th>
+                        <th>재고1</th>
+                        <th>재고2</th>
+                        <th>재고3</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>종류</td>
+                        <td>이름</td>
+                        <td>가격</td>
+                        <td>재고1</td>
+                        <td>재고1</td>
+                        <td>재고3</td>
+                        <td><button type="button">삭제</button></td>
+                    </tr>
+                    <tr>
+                        <td>종류</td>
+                        <td>이름</td>
+                        <td>가격</td>
+                        <td>재고1</td>
+                        <td>재고1</td>
+                        <td>재고3</td>
+                        <td><button type="button">삭제</button></td>
+                    </tr>
+                    <tr>
+                        <td>종류</td>
+                        <td>이름</td>
+                        <td>가격</td>
+                        <td>재고1</td>
+                        <td>재고1</td>
+                        <td>재고3</td>
+                        <td><button type="button">삭제</button></td>
+                    </tr>
+                    <tr>
+                        <td>종류</td>
+                        <td>이름</td>
+                        <td>가격</td>
+                        <td>재고1</td>
+                        <td>재고1</td>
+                        <td>재고3</td>
+                        <td><button type="button">삭제</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
