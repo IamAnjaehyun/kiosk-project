@@ -24,67 +24,7 @@
                 <div class="mainmenu"> <!--정보 db연동-->
                     <div class="menucontents">
                         <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                </div>
-                <div class="sidemenu" style="display: none;"> <!--사이드 메뉴 화면 버튼으로 동작-->
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
-                        </button>
-                        <div>햄버거</div>
-                        <div>9000원</div>
-                    </div>
-                </div>
-                <div class="beverage" style="display: none;"><!--음료 화면 버튼으로 동작-->
-                    <div class="menucontents">
-                        <button type="button">
-                            <img src="img/hamberger.jpg">
+                            <img src="./img/hamberger.jpg">
                         </button>
                         <div>햄버거</div>
                         <div>9000원</div>
@@ -98,14 +38,74 @@
                     </div>
                     <div class="menucontents">
                         <button type="button">
-                            <img src="img/hamberger.jpg">
+                            <img src="./img/hamberger.jpg">
                         </button>
                         <div>햄버거</div>
                         <div>9000원</div>
                     </div>
                     <div class="menucontents">
                         <button type="button">
-                            <img src="img/hamberger.jpg">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                </div>
+                <div class="sidemenu" style="display: none;"> <!--사이드 메뉴 화면 버튼으로 동작-->
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                </div>
+                <div class="beverage" style="display: none;"><!--음료 화면 버튼으로 동작-->
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
+                        </button>
+                        <div>햄버거</div>
+                        <div>9000원</div>
+                    </div>
+                    <div class="menucontents">
+                        <button type="button">
+                            <img src="./img/hamberger.jpg">
                         </button>
                         <div>햄버거</div>
                         <div>9000원</div>
@@ -154,12 +154,10 @@
                         </tr>
                     </table>
                 </div>
-                <label>
-                    <input type="radio" class="radioplace" name="place" value="restorant"><span>매장식사</span>
-                </label>
-                <label>
-                    <input type="radio" class="radioplace" name="place" value="takeout"><span>포장</span>
-                </label>
+                <div class="radio">
+                        <input type="radio" id="radio1" name="place" value="restorant"><label for="radio1">매장식사</label>
+                        <input type="radio" id="radio2" name="place" value="takeout"><label for="radio2">포장</label>
+                </div>
             </div>
         </div>
         <button id="topay" type="button" onclick="location.href='user_pay.html'">결제화면으로</button>
