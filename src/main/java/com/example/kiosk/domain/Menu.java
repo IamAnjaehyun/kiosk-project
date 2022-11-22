@@ -4,10 +4,8 @@ package com.example.kiosk.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -25,10 +23,6 @@ public class Menu {
     @Setter
     @Column(nullable = false)
     private int price; // 메뉴 가격
-//    private String pic; // 메뉴 사진 (어떻게 넣을건지?)
-
-    @CreatedDate
-    private LocalDateTime orderedAt; //주문 시간
 
     protected Menu() {
     }
