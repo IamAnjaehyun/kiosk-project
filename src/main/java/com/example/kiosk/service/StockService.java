@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Transactional
+@Transactional //db 수정하다 되돌리기 가능
 @Service
 public class StockService {
 

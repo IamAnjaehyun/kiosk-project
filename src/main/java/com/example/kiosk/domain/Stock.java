@@ -1,5 +1,5 @@
 package com.example.kiosk.domain;
-//교수님이 말씀하신 공급처 안넣어도 된다고 판단. 안넣었음.
+//재고 통으로 설정해서 빼는것 부터 시작할 예정이라 공급처는 따로 추가하지 않았음
 
 import lombok.Getter;
 import lombok.Setter;

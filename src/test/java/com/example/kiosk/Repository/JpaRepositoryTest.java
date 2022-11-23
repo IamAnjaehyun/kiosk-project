@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-@DisplayName("JPA 연결 테스ㅌ트")
+@DisplayName("JPA 연결 테스트")
 @Import(JpaConfig.class)
 @DataJpaTest
 class JpaRepositoryTest {
@@ -37,11 +37,12 @@ class JpaRepositoryTest {
         //given
 
         //when
-        List< Menu> menus = menuRepository.findAll();
+        List<Menu> menus = menuRepository.findAll();
         //then
         assertThat(menus)
                 .isNotNull()
                 .hasSize(1);
+        //메뉴 갯수 받아오기
     }
 
 }
