@@ -33,5 +33,14 @@ spring:
     base-path: /api
     detection-strategy: annotated
 ---
+#spring:
+#  config.active.on-profile: testdb
+
+---
+# 헤로쿠 설정
 spring:
-  config.active.on-profile: testdb
+  config.activate.on-profile: heroku
+  datasource:
+    url: ${CLEARDB_DATABASE_URL}
+  jpa.hibernate.ddl-auto: create
+  sql.init.mode: always
