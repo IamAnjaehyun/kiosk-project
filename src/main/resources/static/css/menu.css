@@ -14,7 +14,7 @@ body{
     width: 40%;
     font-size: 40px;
 }
-.box{   
+.box{
     width: 25%;
     height: 100px;
     margin: auto;
@@ -25,7 +25,7 @@ body{
     margin-top: 30px;
     border: 0;
     border-radius: 5px;
-    background-color: steelblue;    
+    background-color: steelblue;
     color: white;
 }
 #toqrcode:hover {
@@ -38,7 +38,7 @@ body{
     margin-top: 30px;
     border: 0;
     border-radius: 5px;
-    background-color: steelblue;    
+    background-color: steelblue;
     color: white;
 }
 #tostock:hover {
@@ -52,6 +52,7 @@ body{
     height: 600px;
     margin: auto;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 .input{
@@ -83,7 +84,7 @@ select{
     height: 30px;
     border: 0;
     border-radius: 5px;
-    background-color: steelblue;    
+    background-color: steelblue;
     color: white;
     margin-left: 10px;
 }
@@ -91,7 +92,7 @@ table{
     margin: auto;
     margin-top: 20px;
     width: 90%;
-    
+    overflow-y: scroll;
 }
 th{
     width: 10%;
@@ -110,5 +111,5 @@ button{
     height: 30px;
     border: 0;
     border-radius: 5px;
-    background-color: lightgray;    
+    background-color: lightgray;
 }
