@@ -15,7 +15,11 @@ spring:
     password: pw
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-    #testdb
+  thymeleaf:
+    prefix: classpath:static/
+    suffix: .html
+    cache: false
+  #testdb
 #      url: jdbc:h2:mem:testdb
 #      username: sa
 #      driver-class-name: org.h2.Driver
