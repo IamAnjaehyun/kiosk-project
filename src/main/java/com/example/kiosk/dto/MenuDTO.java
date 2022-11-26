@@ -8,6 +8,15 @@ public class MenuDTO {
     private Long MenuID; // 메뉴 코드 자동생성 되면 좋음
     private String MenuName; // 메뉴 이름
     private int price; // 메뉴 가격
+    private int menuCount;
+
+    public int getMenuCount() {
+        return menuCount;
+    }
+
+    public void setMenuCount(int menuCount) {
+        this.menuCount = menuCount;
+    }
 
     public Long getMenuID() {
         return MenuID;
