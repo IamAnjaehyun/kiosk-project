@@ -7,50 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자:메뉴편집</title>
     <link rel="stylesheet" media="all and (max-width: 1024px)" href="/css/stock.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
-    <header>
-        <div class="top">
-            <div class="box"></div>
-            <div class="maintitle">재고 관리</div>
-            <div class="box">
-                <button id="toqrcode" type="button" onclick="location.href='/index'">qr코드화면</button>
-                <button id="tomenu" type="button" onclick="location.href='/admin'">메뉴 편집</button>
-<!--                html끼리 이동이 갑자기 안됨 변수발생-->
-            </div>
-        </div>    
-    </header>
-    <main>
-        <div class="main">
-            <div class="input">
-                <form method="post" action=" " >
-                    <input id="Snameinput" type="text" placeholder="재고 이름">
-                    <input id="submit" type="submit" value="입 력">
-                </form>
-            </div>
-            <div class="table"> <!-- 임의표 -->
-                <table border=1 cellpadding=1 >
-                    <tr>
-                        <th>재고명</th>
-                        <th>잔 량</th>
-                        <th></th>
-                    </tr>
-
-                    <tr th:each="list : ${menuList}">
-                        <td><span th:text="${menu.listname}"></span></td>
-                        <td><span th:text="${menu.stock}"></span></td>
-                        <td><button type="button">+</button>
-                            <button type="button">-</button></td>
-                    </tr>
-                    <tr>
-                        <td>피자</td>
-                        <td>10</td>
-                        <td><button type="button">+</button>
-                        <button type="button">-</button></td>
-                    </tr>
-                </table>
-            </div>
+<header>
+    <div class="top">
+        <div class="box"></div>
+        <div class="maintitle">재고 관리</div>
+        <div class="box">
+            <button id="toqrcode" type="button" onclick="location.href='/index'">qr코드화면</button>
+            <button id="tomenu" type="button" onclick="location.href='/admin'">메뉴 편집</button>
         </div>
-    </main>
+    </div>
+</header>
+<main>
+    <div class="main">
+        <div class="input">
+            <form method="post" action=" " >
+                <input id="Snameinput" type="text" placeholder="재고 이름">
+                <input id="submit" type="submit" value="입 력">
+            </form>
+        </div>
+        <div class="table"> <!-- 임의표 -->
+            <table border=1 cellpadding=1 >
+                <tr>
+                    <th>재고명</th>
+                    <th>잔 량</th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="menu : ${menuList}">
+                    <td><span th:text="${menu.menuName}"></span></td>
+                    <td><span th:text="${menu.menuCount}"></span></td>
+
+                    <td><button type="button" onclick="">+</button>
+                        <button type="button" onclick="">-</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</main>
 </body>
 </html>

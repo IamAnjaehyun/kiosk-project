@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/order.css">
     <title>주문화면</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <header>
@@ -17,78 +17,72 @@
 <div class="menulist">
     <div class="menubutton">
         <button id="main" type="button">메인 메뉴</button>
-        <button id="side" type="button">사이드 메뉴</button>
-        <button id="beverage" type="button">음료</button>
     </div>
     <div class="showmenu">
         <div class="mainmenu"> <!--정보 db연동-->
-            <div class="menucontents">
-                <button type="button">
+            <!-- 메뉴 반복 시작-->
+            <div class="menucontents" th:each="menu : ${menuList}">
+                <button type="button"
+                        th:menu="${menu}"
+                        th:onclick="addMenu([[${menu}]])">
                     <img src="/img/hamberger.jpg">
                 </button>
-                <div>햄버거</div>
-                <div>9000원</div>
+                <div th:text="${menu.menuName}"></div>
+                <div th:text="${menu.price} + '원'"></div>
             </div>
-
-            <!-- 여기는 어떻게 돌릴까요~~~?-->
-
-        </div>
-        <div class="sidemenu" style="display: none;"> <!--사이드 메뉴 화면 버튼으로 동작-->
-            <div class="menucontents">
-                <button type="button">
-                    <img src="../static/img/hamberger.jpg">
-                </button>
-                <div>햄버거</div>
-                <div>9000원</div>
-            </div>
-
-            <div class="beverage" style="display: none;"><!--음료 화면 버튼으로 동작-->
-                <div class="menucontents">
-                    <button type="button">
-                        <img src="../static/img/hamberger.jpg">
-                    </button>
-                    <div>햄버거</div>
-                    <div>9000원</div>
-                </div>
-
-            </div>
+            <!-- 메뉴 반복 끝 -->
         </div>
 
-        <div class="basket">
-            <div class="list">
-                <table cellpadding=1>
+    </div>
 
+    <div class="basket">
+        <div class="list">
+            <table cellpadding=1>
+                <thead>
+                <tr>
+                    <th>메뉴 순번</th>
+                    <th>이름</th>
+                    <th>가격</th>
+                    <th>수정</th>
+                </tr>
+                </thead>
+                <tbody id="menuBody">
 
-                    <tr>
-                        <th>메뉴 순번</th>
-                        <th>이름</th>
-                        <th>가격</th>
-                        <th></th>
-                    </tr>
+                </tbody>
+                <!--  <tr th:each="menu : ${menuList}">>
 
-                    <tr th:each="list : ${menuList}">
-                        <td>그냥 번호 1씩 늘어야됨</td>
-                        <td><span th:text="${menu.name}">메뉴이름박을자리</span></td>
-                        <td><span th:text="${menu.price}">가격박을자리</span></td>
-                        <td><button type="button">삭제</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>햄버거</td>
-                        <td>9000원</td>
-                        <td><button type="button">삭제</button></td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="radio">
-                <input type="radio" id="radio1" name="place" value="restorant"><label for="radio1">매장식사</label>
-                <input type="radio" id="radio2" name="place" value="takeout"><label for="radio2">포장</label>
-            </div>
-            <button id="topay" type="button" onclick="location.href='/pay'">결제화면으로</button>
+                      <td th:text="${menuStat.count}"></td>
+                      <td><span th:text="${menu.menuName}">메뉴이름박을자리</span></td>
+                      <td><span th:text="${menu.price}">가격박을자리</span></td>
+                      <td><button type="button" onclick="location.href='/delete'"  >삭제</button></td>
+                  </tr>-->
+            </table>
         </div>
+        <div class="radio">
+            <input type="radio" id="radio1" name="place" value="restorant"><label for="radio1">매장식사</label>
+            <input type="radio" id="radio2" name="place" value="takeout"><label for="radio2">포장</label>
+        </div>
+        <button id="topay" type="button" onclick="location.href='/pay'">결제화면으로</button>
     </div>
 </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        //alert("test")
+    }
+
+    function addMenu(menu) {
+        var menuBody = $('#menuBody')
+
+        var html = '<tr>'
+        html += '<td></td>'
+        html += '<td>' + menu.menuName + '</td>'
+        html += '<td>' + menu.price + '</td>'
+        html += '<td><button type="button" onclick=""></button></td>'
+        html += '</tr>'
+        console.log(html)
+        menuBody.append(html)
+    }
+</script>
 </body>
 </html>

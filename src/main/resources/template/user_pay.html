@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,60 +9,60 @@
     <title>결제화면</title>
 </head>
 <body>
-    <header>
-        <div class="top">
-            <h2>00식당</h2>
+<header>
+    <div class="top">
+        <h2>백석패스트푸드</h2>
+    </div>
+</header>
+<main>
+    <div class="basket">
+        <div class="list">
+            <table cellpadding=1 >
+                <tr>
+                    <th>메뉴 순번</th>
+                    <th>이름</th>
+                    <th>가격</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>bill이랑 menu 조인해서 총 가격만 보이게?</th>
+                </tr>
+            </table>
         </div>
-    </header>
-    <main>
-        <div class="basket">
-            <div class="list">
-                <table cellpadding=1 >
-                    <tr>
-                        <th>메뉴 순번</th>
-                        <th>이름</th>
-                        <th>가격</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <th>bill이랑 menu 조인해서 총 가격만 보이게?</th>
-                    </tr>
-                </table>
-            </div>
+    </div>
+    <div class="getpay">
+        <div class="buttondiv">
+            <button id="card" type="button">카드</button>
+            <button id="cash" type="button">현금</button>
         </div>
-        <div class="getpay">
-            <div class="buttondiv">
-                <button id="card" type="button">카드</button>
-                <button id="cash" type="button">현금</button>
-            </div>
-            <div class="cardguide">
-                <table>
-                    <tr>
-                        <td>카드번호</td>
-                        <td><input type="text" class="cardinfo" id="cardnum" placeholder="'-'없이 번호를 입력하세요"></td>
-                    </tr>
-                    <tr>
-                        <td>비밀번호</td>
-                        <td><input type="text" class="cardinfo" id="cardpassword" placeholder="앞 2자리"></td>
-                    </tr>
-                    <tr>
-                        <td>CVC</td>
-                        <td><input type="text" class="cardinfo" id="cardcvc" placeholder="3자리"></td>
-                    </tr>
-                    <tr>
-                        <td>유효기간</td>
-                        <td><input type="text" class="cardinfo" id="carddate" placeholder="MM/YY"></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="cashguide" style="display: none;">
-                <span>카운터에서 계산해주세요!</span>
-            </div>
-            <div class="buttondiv">
-                <button type="submit" id="paycomplete">결제완료</button>
-                <button type="button" id="paycancel">결제취소</button>
-            </div>
-        </div>   
-    </main>
+        <div class="cardguide">
+            <table>
+                <tr>
+                    <td>카드번호</td>
+                    <td><input type="text" class="cardinfo" id="cardnum" placeholder="'-'없이 번호를 입력하세요"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="text" class="cardinfo" id="cardpassword" placeholder="앞 2자리"></td>
+                </tr>
+                <tr>
+                    <td>CVC</td>
+                    <td><input type="text" class="cardinfo" id="cardcvc" placeholder="3자리"></td>
+                </tr>
+                <tr>
+                    <td>유효기간</td>
+                    <td><input type="text" class="cardinfo" id="carddate" placeholder="MM/YY"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cashguide" style="display: none;">
+            <span>카운터에서 계산해주세요!</span>
+        </div>
+        <div class="buttondiv">
+            <button type="submit" id="paycomplete">결제완료</button>
+            <button id="paycancel" type="button" onclick="location.href='/order'">이전으로 돌아가기</button>
+        </div>
+    </div>
+</main>
 </body>
 </html>
