@@ -1,4 +1,4 @@
-insert into menu (menuID, menu_name, price, menu_count) values (1,'test1', 5001, 1);
+insert into menu (menu_name, price, menu_count) values ('test1', 5001, 1);
 insert into menu (menu_name, price, menu_count) values ('test2', 5002, 2);
 insert into menu (menu_name, price, menu_count) values ('test3', 5003, 3);
 insert into menu (menu_name, price, menu_count) values ('test4', 5004, 4);
