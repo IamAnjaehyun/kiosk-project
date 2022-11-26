@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자:메뉴편집</title>
-    <link rel="stylesheet" media="all and (max-width: 1024px)" href="./css/stock.css">
+    <link rel="stylesheet" media="all and (max-width: 1024px)" href="/css/stock.css">
 </head>
 <body>
     <header>
@@ -16,6 +16,7 @@
             <div class="box">
                 <button id="toqrcode" type="button" onclick="location.href='index.html'">qr코드화면</button>
                 <button id="tomenu" type="button" onclick="location.href='admin_menu.html'">메뉴 편집</button>
+<!--                html끼리 이동이 갑자기 안됨 변수발생-->
             </div>
         </div>    
     </header>
@@ -34,29 +35,18 @@
                         <th>잔 량</th>
                         <th></th>
                     </tr>
+
+                    <tr th:each="list : ${menuList}">
+                        <td><span th:text="${menu.listname}"></span></td>
+                        <td><span th:text="${menu.stock}"></span></td>
+                        <td><button type="button">+</button>
+                            <button type="button">-</button></td>
+                    </tr>
                     <tr>
                         <td>피자</td>
                         <td>10</td>
                         <td><button type="button">+</button>
                         <button type="button">-</button></td>
-                    </tr>
-                    <tr>
-                        <td>치킨</td>
-                        <td>10</td>
-                        <td><button type="button">+</button>
-                            <button type="button">-</button></td>
-                    </tr>
-                    <tr>
-                        <td>햄버거</td>
-                        <td>10</td>
-                        <td><button type="button">+</button>
-                            <button type="button">-</button></td>
-                    </tr>
-                    <tr>
-                        <td>자장면</td>
-                        <td>10</td>
-                        <td><button type="button">+</button>
-                            <button type="button">-</button></td>
                     </tr>
                 </table>
             </div>

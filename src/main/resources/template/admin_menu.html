@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자:메뉴편집</title>
-    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="/css/menu.css">
 </head>
 <body>
     <header>
@@ -25,6 +25,7 @@
             <div class="input">
                 <form method="post" action=" " >
                     <select>
+                        <option value="default">메뉴 종류</option>
                         <option value="main">메인메뉴</option>
                         <option value="side">사이드메뉴</option>
                         <option value="beverage">음료</option>
@@ -40,6 +41,9 @@
                 </form>
             </div>
             <div class="table"> <!-- 임의표 -->
+                <!--
+                종류 이름 가격 재고 넣으면 한줄씩 추가되고 삭제누르면 한줄씩 줄어들어야함
+                -->
                 <table border=1 cellpadding=1 >
                     <tr>
                         <th>메뉴 종류</th>
@@ -49,37 +53,11 @@
                         
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>종류</td>
-                        <td>이름</td>
-                        <td>가격</td>
-                        <td>재고1</td>
-                        
-
-                        <td><button type="button">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td>종류</td>
-                        <td>이름</td>
-                        <td>가격</td>
-                        <td>재고1</td>
-                        
-                        <td><button type="button">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td>종류</td>
-                        <td>이름</td>
-                        <td>가격</td>
-                        <td>재고1</td>
-                        
-                        <td><button type="button">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td>종류</td>
-                        <td>이름</td>
-                        <td>가격</td>
-                        <td>재고1</td>
-                        
+                    <tr th:each="list : ${menuList}">
+                        <td><span th:text="${menu.listname}"></span></td>
+                        <td><span th:text="${menu.name}"></span></td>
+                        <td><span th:text="${menu.price}"></span></td>
+                        <td><span th:text="${menu.stock}"></span></td>
                         <td><button type="button">삭제</button></td>
                     </tr>
                 </table>

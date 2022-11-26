@@ -16,7 +16,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   thymeleaf:
-    prefix: classpath:static/
+    prefix: classpath:template/
     suffix: .html
     cache: false
   #testdb
