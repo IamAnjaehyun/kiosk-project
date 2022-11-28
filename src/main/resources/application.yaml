@@ -8,12 +8,14 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
+  config.active.on-profile: heroku
   datasource:
     #?? db
     url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
     username: u5ir6w5clvtodsmt
     password: sy66v87a7dhjwkmk
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   #    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
 #    username: u5ir6w5clvtodsmt
@@ -53,7 +55,7 @@ spring:
       enabled: true
 ---
 #spring:
-#  config.active.on-profile: testdb
+#
 
 ---
 # 헤로쿠 설정
