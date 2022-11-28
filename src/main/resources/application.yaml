@@ -20,6 +20,9 @@ spring:
     password: sy66v87a7dhjwkmk
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+    hikari:
+      maximum-pool-size=9
+
   thymeleaf:
     prefix: classpath:template/
     suffix: .html
