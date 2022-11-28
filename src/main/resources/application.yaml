@@ -11,8 +11,8 @@ spring:
   datasource:
     #?? db
     url: jdbc:mysql://localhost:3306/kiosk
-    username: root
-    password: 0000
+    username: kiosk
+    password: pw
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 #    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
@@ -20,7 +20,7 @@ spring:
 #    password: sy66v87a7dhjwkmk
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 
-#    hikari:
+#    jaws:
 #      maximum-pool-size=9
 
   thymeleaf:
