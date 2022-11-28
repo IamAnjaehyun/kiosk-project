@@ -10,15 +10,15 @@ logging:
 spring:
   datasource:
     #?? db
-#    url: jdbc:mysql://localhost:3306/kiosk
-#    username: kiosk
-#    password: pw
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-
-    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
-    username: u5ir6w5clvtodsmt
-    password: sy66v87a7dhjwkmk
+    url: jdbc:mysql://localhost:3306/kiosk
+    username: root
+    password: 0000
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+#    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
+#    username: u5ir6w5clvtodsmt
+#    password: sy66v87a7dhjwkmk
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 
     hikari:
       maximum-pool-size=9
