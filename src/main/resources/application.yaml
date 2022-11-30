@@ -14,7 +14,6 @@ spring:
     url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
     username: u5ir6w5clvtodsmt
     password: sy66v87a7dhjwkmk
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 
   #    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
@@ -22,17 +21,11 @@ spring:
 #    password: sy66v87a7dhjwkmk
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 
-#    jaws:
-#      maximum-pool-size=9
 
   thymeleaf:
     prefix: classpath:template/
     suffix: .html
     cache: false
-  #testdb
-  #      url: jdbc:h2:mem:testdb
-  #      username: sa
-  #      driver-class-name: org.h2.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
@@ -66,3 +59,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa.hibernate.ddl-auto: create
   sql.init.mode: always
+  hikari.maximum-pool-size: 9
