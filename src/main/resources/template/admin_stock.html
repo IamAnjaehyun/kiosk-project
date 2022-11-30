@@ -42,8 +42,7 @@
                     <td><span th:text="${menu.menuName}"></span></td>
                     <td><span th:text="${menu.menuCount}"></span></td>
 
-                    <td><button type="button" onclick="">+</button>
-                    <button type="button" onclick="">+</button></td>
+                    <td><a th:href="@{/stock/delete?(id=${menu.menuID})}">글 삭제</a></td>
 
 <!--                        <button type="button" th:href="@{/stock?(id=${menu.menuId})}">+</button></td>-->
                 </tr>
