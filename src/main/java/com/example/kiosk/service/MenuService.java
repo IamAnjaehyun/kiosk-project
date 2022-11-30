@@ -20,6 +20,13 @@ public class MenuService {
         return menuList;
     }
 
+//    @Transactional
+//    public synchronized void decrease(final Long id, final int menuCount) {
+//        Menu menu = menuRepository.findById(id).orElseThrow();
+//        menu.decrease(menuCount);
+//        menuRepository.saveAndFlush(menu);
+//    }
+
 }
 //주문 완료처리 ( 목록 보고 다하면 그냥 화면에서 그 목록 삭제만 )
 //사용자가 주뭄ㄴ하는거
