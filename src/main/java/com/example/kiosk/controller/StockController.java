@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +34,12 @@ public class StockController {
         return mav;
     }
 
-    @DeleteMapping("/stock")
-    public String boardDelete(Long menuId){
+    @GetMapping("/stock/delete")
+    public String boardDelete(Long menuId, Model model){
         menuService.menuDelete(menuId);
+        model.addAttribute("message" , "글 삭제 완료.");
+        model.addAttribute("SearchUrl" , "/stock");
 
-        return "redirect:/stock";
+        return "message";
     }
 }
