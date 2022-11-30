@@ -24,18 +24,15 @@
 </header>
 <main>
     <div class="main">
-        <div class="input">
-            <form method="post" action=" " >
-                <select>
-                    <option value="default">메뉴ID</option>
-                </select>
+        <div class="layout">
+            <form action="/order/writepro" method="post">
                 <input id="nameinput" type="text" placeholder="메뉴 이름">
                 <input id="priceinput" type="number" step="1000" placeholder="메뉴 가격">
                 <input id="priceinput" type="number" step="5" placeholder="잔여 재고량">
-
-                <input id="submit" type="submit" value="입 력">
+                <button>입력</button>
             </form>
         </div>
+
         <div class="table"> <!-- 임의표 -->
             <!--
             종류 이름 가격 재고 넣으면 한줄씩 추가되고 삭제누르면 한줄씩 줄어들어야함
