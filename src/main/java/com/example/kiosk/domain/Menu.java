@@ -1,34 +1,34 @@
 package com.example.kiosk.domain;
 //메뉴에 대한 설명은 안넣어도 될 것 같아서 안넣었음.
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Objects;
-
-@Data
 @Entity
-@ToString
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+@NoArgsConstructor
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long menuID; // 메뉴 코드
 
-    @Column(nullable = false)
+    @Column
     private String menuName; // 메뉴 이름
 
-    @Column(nullable = false)
+    @Column
     private int price; // 메뉴 가격
 
-    @Column(nullable = false)
+    @Column
     private int menuCount;
-//
+
+    public Menu(String menuName, int price, int menuCount) {
+        this.menuName = menuName;
+        this.price = price;
+        this.menuCount = menuCount;
+    }
+    //
 //    protected Menu() {
 //    }
 //

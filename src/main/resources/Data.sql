@@ -9,6 +9,7 @@ insert into menu (menu_name, price, menu_count) values ('test8', 5007, 7);
 insert into menu (menu_name, price, menu_count) values ('test9', 5007, 7);
 insert into menu (menu_name, price, menu_count) values ('test10', 5088, 7);
 insert into menu (menu_name, price, menu_count) values ('test11', 5088, 7);
+insert into menu (menu_name, price, menu_count) values ('whywhywhywhwywhwy', 9999, 1111);
 # 10개 넘어서 db 오류생기나 확인차 주석
 
 insert into bill (OrderId) values (3);

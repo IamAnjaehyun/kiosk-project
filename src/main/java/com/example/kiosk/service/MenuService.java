@@ -26,8 +26,8 @@ public class MenuService {
         menuRepository.save(menu);
     }
 
-    public void menuDelete(Long menuId){
-        menuRepository.deleteById(menuId);
+    public void menuDelete(Long menuID){
+        menuRepository.deleteById(menuID);
     }
 }
 
