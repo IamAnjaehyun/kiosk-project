@@ -1,8 +1,7 @@
 package com.example.kiosk.domain;
 //메뉴에 대한 설명은 안넣어도 될 것 같아서 안넣었음.
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,6 +9,11 @@ import java.util.Objects;
 @Data
 @Entity
 @ToString
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu {
 
     @Id
@@ -24,32 +28,32 @@ public class Menu {
 
     @Column(nullable = false)
     private int menuCount;
-
-    protected Menu() {
-    }
-
-    private Menu(Long menuID, String menuName, int price) {
-        menuID = menuID;
-        menuName = menuName;
-        this.price = price;
-    }
-
-    public static Menu of(Long menuID, String menuName, int price) {
-        return new Menu(menuID,menuName,price);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Menu)) return false;
-        Menu menu = (Menu) o;
-        return menuID.equals(menu.menuID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(menuID);
-    }
+//
+//    protected Menu() {
+//    }
+//
+//    private Menu(Long menuID, String menuName, int price) {
+//        menuID = menuID;
+//        menuName = menuName;
+//        this.price = price;
+//    }
+//
+//    public static Menu of(Long menuID, String menuName, int price) {
+//        return new Menu(menuID,menuName,price);
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Menu)) return false;
+//        Menu menu = (Menu) o;
+//        return menuID.equals(menu.menuID);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(menuID);
+//    }
 //--------
 
 //    public void decrease(final int menuCount) {
