@@ -2,6 +2,7 @@ package com.example.kiosk.service;
 
 import com.example.kiosk.Repository.MenuRepository;
 import com.example.kiosk.domain.Menu;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,24 +11,24 @@ import java.util.List;
 
 @Transactional //db 수정하다 되돌리기 가능
 @Service
+@RequiredArgsConstructor
 public class MenuService {
 
     @Autowired
     private MenuRepository menuRepository;
 
-    public List<Menu> selectMenu(){
+    public List<Menu> selectMenu() {
         List<Menu> menuList = menuRepository.findAll();
         return menuList;
     }
 
-//    @Transactional
-//    public synchronized void decrease(final Long id, final int menuCount) {
-//        Menu menu = menuRepository.findById(id).orElseThrow();
-//        menu.decrease(menuCount);
-//        menuRepository.saveAndFlush(menu);
-//    }
+    public void commit(Menu menu){
+        menuRepository.save(menu);
+    }
 
+    public void menuDelete(Long menuId){
+        menuRepository.deleteById(menuId);
+    }
 }
-//주문 완료처리 ( 목록 보고 다하면 그냥 화면에서 그 목록 삭제만 )
-//사용자가 주뭄ㄴ하는거
+
 
