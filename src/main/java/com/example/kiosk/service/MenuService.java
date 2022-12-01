@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional //db 수정하다 되돌리기 가능
 @Service
@@ -23,17 +25,50 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public List<Menu> selectMenu() {
-        List<Menu> menuList = menuRepository.findAll();
-        return menuList;
-    }
+//    public List<Menu> selectMenu() {
+//        List<Menu> menuList = menuRepository.findAll();
+//        return menuList;
+//    }
 
     @Transactional
     public Long savePost(MenuDto menuDto){
         return menuRepository.save(menuDto.toEntity()).getMenuID();
     }
 
-    public void menuDelete(Long menuID){
+    @Transactional
+    public List<MenuDto> getMenulist(){
+        List<Menu> menus = menuRepository.findAll();
+        List<MenuDto> menuDtoList = new ArrayList<>();
+
+        for(Menu menu : menus){
+            MenuDto menuDto = MenuDto.builder()
+                    .menuID(menu.getMenuID())
+                    .menuName(menu.getMenuName())
+                    .price(menu.getPrice())
+                    .menuCount(menu.getMenuCount())
+                    .build();
+
+            menuDtoList.add(menuDto);
+        }
+        return menuDtoList;
+    }
+
+    public MenuDto getMenu(Long menuID){
+        Optional<Menu> menuWrapper = menuRepository.findById(menuID);
+        Menu menu = menuWrapper.get();
+
+        MenuDto menuDto = MenuDto.builder()
+                .menuID(menu.getMenuID())
+                .menuName(menu.getMenuName())
+                .price(menu.getPrice())
+                .menuCount(menu.getMenuCount())
+                .build();
+
+        return menuDto;
+
+    }
+
+    public void deletePost(Long menuID){
         menuRepository.deleteById(menuID);
     }
 }
