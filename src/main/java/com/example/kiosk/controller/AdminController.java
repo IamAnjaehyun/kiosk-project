@@ -44,7 +44,7 @@ public class AdminController {
     @PostMapping("/post")
     public String write(MenuDto menuDto){
         menuService.savePost(menuDto);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 //    @GetMapping("/admin/commit") //localhost:8090/admin/commit
 //    public String menuWriteForm(){

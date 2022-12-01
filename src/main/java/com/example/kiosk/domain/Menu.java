@@ -27,11 +27,13 @@ public class Menu {
     private Integer menuCount;
 
     @Builder
-    public Menu(String menuName, Integer price, Integer menuCount) {
+    public Menu(Long menuID, String menuName, Integer price, Integer menuCount) {
+        this.menuID = menuID;
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
     }
+
     //
 //    protected Menu() {
 //    }
