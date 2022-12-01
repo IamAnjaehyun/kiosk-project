@@ -1,4 +1,4 @@
-package com.example.kiosk.Repository;
+package com.example.kiosk.domain.Repository;
 
 import com.example.kiosk.domain.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
