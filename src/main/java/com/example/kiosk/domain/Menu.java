@@ -1,29 +1,33 @@
 package com.example.kiosk.domain;
 //메뉴에 대한 설명은 안넣어도 될 것 같아서 안넣었음.
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 @Entity
 @Data
-@NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EnableJpaAuditing
 public class Menu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long menuID; // 메뉴 코드
 
-    @Column
+    @Column(nullable = false)
     private String menuName; // 메뉴 이름
 
-    @Column
-    private int price; // 메뉴 가격
+    @Column(nullable = false)
+    private Integer price; // 메뉴 가격
 
-    @Column
-    private int menuCount;
+    @Column(nullable = false)
+    private Integer menuCount;
 
-    public Menu(String menuName, int price, int menuCount) {
+    @Builder
+    public Menu(String menuName, Integer price, Integer menuCount) {
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
