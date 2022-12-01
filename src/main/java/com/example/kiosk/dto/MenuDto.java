@@ -9,13 +9,16 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class MenuDto {
+    private Long menuID;
     private String menuName;
     private Integer price;
     private Integer menuCount;
 
 
+
     public Menu toEntity()  {
           Menu build = Menu.builder()
+                  .menuID(menuID)
                   .menuName(menuName)
                   .price(price)
                   .menuCount(menuCount)
@@ -24,7 +27,8 @@ public class MenuDto {
     }
 
     @Builder
-    public MenuDto(String menuName, Integer price, Integer menuCount) {
+    public MenuDto(Long menuID, String menuName, Integer price, Integer menuCount) {
+        this.menuID = menuID;
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
