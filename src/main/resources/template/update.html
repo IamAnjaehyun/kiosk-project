@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/post/edit/' + ${menuDto.menuID}}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <input type="hidden" name="menuID" th:value="${menuDto.menuID}"/>
+
+    이름 : <input type="text" name="menuName" th:value="${menuDto.menuName}"> <br>
+    가격 : <input type="text" name="price" th:value="${menuDto.price}"> <br>
+    재고 : <input type="text" name="menuCount" th:value="${menuDto.menuCount}"> <br>
+
+    <input type="submit" value="수정">
+</form>
+
+</body>
+</html>

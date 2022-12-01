@@ -23,13 +23,6 @@
 </header>
 <main>
     <div class="main">
-<!--        이거없어도될듯-->
-<!--        <div class="input">-->
-<!--            <form method="post" action=" " >-->
-<!--                <input id="Snameinput" type="text" placeholder="재고 이름">-->
-<!--                <input id="submit" type="submit" value="입 력">-->
-<!--            </form>-->
-<!--        </div>-->
         <div class="table"> <!-- 임의표 -->
             <table border=1 cellpadding=1 >
                 <tr>
@@ -39,10 +32,11 @@
                 </tr>
 
                 <tr th:each="menu : ${menuList}">
+                    <td><span th:text="${menu.menuID}"></span></td>
                     <td><span th:text="${menu.menuName}"></span></td>
                     <td><span th:text="${menu.menuCount}"></span></td>
 
-                    <td><a th:href="@{/stock/delete?(id=${menu.menuID})}">글 삭제</a></td>
+                    <td><a th:href="@{/stock/delete?(id=${menu.menuID})}">메뉴 삭제</a></td>
 
 <!--                        <button type="button" th:href="@{/stock?(id=${menu.menuId})}">+</button></td>-->
                 </tr>

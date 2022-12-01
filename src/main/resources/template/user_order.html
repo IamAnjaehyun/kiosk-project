@@ -49,13 +49,7 @@
                 <tbody id="menuBody">
 
                 </tbody>
-                <!--  <tr th:each="menu : ${menuList}">>
 
-                      <td th:text="${menuStat.count}"></td>
-                      <td><span th:text="${menu.menuName}">메뉴이름박을자리</span></td>
-                      <td><span th:text="${menu.price}">가격박을자리</span></td>
-                      <td><button type="button" onclick="location.href='/delete'"  >삭제</button></td>
-                  </tr>-->
             </table>
         </div>
         <div class="radio">
@@ -75,7 +69,7 @@
         var menuBody = $('#menuBody')
 
         var html = '<tr>'
-        html += '<td></td>'
+        html += '<td>' +  + '</td>'
         html += '<td>' + menu.menuName + '</td>'
         html += '<td>' + menu.price + '</td>'
         html += '<td><button type="button" onclick=""></button></td>'
