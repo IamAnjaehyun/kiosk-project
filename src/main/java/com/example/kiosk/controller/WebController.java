@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebController {
 
-    @GetMapping(value = "/customer") //인덱스 페이지
+    @GetMapping(value = "/index") //인덱스 페이지
     public String main(){
         return "index";
     }
-
 }

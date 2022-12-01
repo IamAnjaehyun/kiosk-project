@@ -25,7 +25,7 @@ public class StockController {
         List<MenuDto> menuDtoList = menuService.getMenulist();
         model.addAttribute("menuList",menuDtoList);
 
-        return "user_stock";
+        return "admin_stock";
     }
 
 }
