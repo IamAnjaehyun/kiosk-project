@@ -1,12 +1,12 @@
 package com.example.kiosk.controller;
 
 import com.example.kiosk.domain.Menu;
+import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +21,10 @@ public class AdminController {
     @Autowired
     private MenuService menuService;
 
+    public AdminController(MenuService menuService){
+        this.menuService=menuService;
+    }
+
     @RequestMapping(value = "/admin") //관리자 제어 페이지
     public ModelAndView admin(){
         ModelAndView mav2 = new ModelAndView("admin_menu");
@@ -32,18 +36,28 @@ public class AdminController {
         return mav2;
     }
 
-    @GetMapping("/admin/commit") //localhost:8090/admin/commit
-    public String menuWriteForm(){
-
-        return "redirect:admin";
+    @GetMapping("/post")
+    public String write(){
+        return "write";
     }
 
-    @PostMapping("/admin/commitmenu")
-    public String menuWritePro(Menu menu, Model model){
-        menuService.commit(menu);
-        model.addAttribute("message" , "글 등록 완료.");
-        model.addAttribute("SearchUrl" , "/admin");
-
-        return "message";
+    @PostMapping("/post")
+    public String write(MenuDto menuDto){
+        menuService.savePost(menuDto);
+        return "redirect:/";
     }
+//    @GetMapping("/admin/commit") //localhost:8090/admin/commit
+//    public String menuWriteForm(){
+//
+//        return "redirect:admin";
+//    }
+//
+//    @GetMapping("/post")
+//    public String menuWritePro(Menu menu, Model model){
+//        menuService.commit(menu);
+//        model.addAttribute("message" , "글 등록 완료.");
+//        model.addAttribute("SearchUrl" , "/admin");
+//
+//        return "message";
+//    }
 }
