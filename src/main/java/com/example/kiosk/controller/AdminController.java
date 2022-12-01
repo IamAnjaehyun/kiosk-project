@@ -30,6 +30,7 @@ public class AdminController {
         return "admin_menu";
     }
 
+<<<<<<< Updated upstream
     @GetMapping("/post")
     public String write(){
         return "write";
@@ -67,6 +68,17 @@ public class AdminController {
     @DeleteMapping("/post/{menuID}")
     public String delete(@PathVariable("menuID") Long menuID){
         menuService.deletePost(menuID);
+=======
+    @PostMapping("/admin/commitmenu")
+    public String menuWritePro(Menu menu, Model model){
+        menuService.commit(menu);
+        List<Menu> menuList = menuService.selectMenu();
+        for (Menu menu1 : menuList){
+            logger.info("메뉴 잘 가지고 오는지 ::::::::::" + menu1.getMenuID() + ", " + menu1.getMenuName() + ", " + menu1.getPrice());
+        }
+        model.addAttribute("message" , "상품 등록 완료.");
+        model.addAttribute("SearchUrl" , "/admin");
+>>>>>>> Stashed changes
 
         return "redirect:/";
     }
