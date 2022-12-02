@@ -1,10 +1,8 @@
 package com.example.kiosk.domain;
 
-import lombok.*;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import lombok.Builder;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,14 +15,9 @@ public class Cart {
     @Column(nullable = false)
     private Long menuID;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
-    private Set<CartProduct> wishList = new java.util.LinkedHashSet<>();
-
-    public Set<CartProduct> getWishList() {
-        return wishList;
-    }
-
-    public void setWishList(Set<CartProduct> wishList) {
-        this.wishList = wishList;
+    @Builder
+    public Cart(Long billID, Long menuID) {
+        this.billID = billID;
+        this.menuID = menuID;
     }
 }
