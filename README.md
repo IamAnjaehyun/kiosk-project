@@ -21,3 +21,6 @@ https://anjh-kiosk.herokuapp.com/
 
 12/1
 *  삭제오류
+
+12/2
+*  CRUD 기능 구현 완료
