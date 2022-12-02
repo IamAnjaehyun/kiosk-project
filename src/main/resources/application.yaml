@@ -33,7 +33,8 @@ spring:
   jpa:
     defer-datasource-initialization: true
     jpa.hibernate.ddl-auto: create
-#   실사용시에는 update or validate or none 로 교체해야함
+
+    #   실사용시에는 update or validate or none 로 교체해야함
     open-in-view: false
     show-sql: true
     properties:
@@ -62,6 +63,6 @@ spring:
   datasource:
     url: ${JAWSDB-URL}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa.hibernate.ddl-auto: create
+#  jpa.hibernate.ddl-auto: create
   sql.init.mode: always
   hikari.maximum-pool-size: 9
