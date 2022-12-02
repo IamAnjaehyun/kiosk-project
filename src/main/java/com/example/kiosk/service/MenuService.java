@@ -24,11 +24,6 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-//    public List<Menu> selectMenu() {
-//        List<Menu> menuList = menuRepository.findAll();
-//        return menuList;
-//    }
-
     @Transactional
     public Long savePost(MenuDto menuDto){
         return menuRepository.save(menuDto.toEntity()).getMenuID();
