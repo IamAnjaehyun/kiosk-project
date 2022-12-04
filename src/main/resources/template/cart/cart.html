@@ -1,145 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <title>Insert title here</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        // 화면이 로딩되면 전체 장바구니 가격을 계산해서 #total_price에 출력
-        function getTotalPrice() {
-            let totalPrice = 0;
-            // $.each(배열, function(idx, 원소))
-            // jQuery 객체를 대상으로는 $().each(function(idx, 원소))
-            $('.item_price').each(function(idx, item) {
-                totalPrice += parseInt($(item).text());
-            });
-            return totalPrice;
-        }
+<!--장바구니 추가하기 버튼 -->
 
-        // + 플러스 버튼 처리
-        function plus() {
-            const $pno = $(this).attr('data-pno');
-            $.ajax({
-                url: "/cart/increase/" + $pno,
-                method: "patch"
-            }).done((count) => {
-                $(this).prev().text(count);
-                const $price = $(this).parent().prev().text();
-                $(this).parent().parent().parent().parent().next().find('.item_price').text(count * $price);
-                $('#total_price').text(getTotalPrice());
-            }).fail(() => alert("더 이상 구입할 수 없습니다. T-T"));
-        }
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layouts/default}">-->
+<!--<head>-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
 
-        // - 마이너스 버튼 처리
-        function minus() {
-            const $pno = $(this).attr('data-pno');
-            let count = $(this).next().text();
-            if (count < 1)
-                return;
-            $.ajax({
-                url: "/cart/decrease/" + $pno,
-                method: "patch"
-            }).done((count) => {
-                $(this).prev().text(count);
-                const $price = $(this).parent().prev().text();
-                $(this).parent().parent().parent().parent().next().find('.item_price').text(count * $price);
-                $('#total_price').text(getTotalPrice());
-            })
-        }
+<!--</head>-->
+<!--&lt;!&ndash; 사용자 스크립트 추가 &ndash;&gt;-->
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:inline="javascript">-->
 
-        $(document).ready(function() {
-            $('#total_price').text(getTotalPrice());
+<!--        &lt;!&ndash; 코드 생략 &ndash;&gt;-->
 
-            $('.plus').click(plus);
-            $('.minus').click(minus);
+<!--        function addCart() {-->
+<!--            var token = $("meta[name='_csrf']").attr("content");-->
+<!--            var header = $("meta[name='_csrf_header']").attr("content");-->
 
-            // 상품 삭제
-            // 여러 개의 값을 넘기는 방법 1. 서버에서 List로 받는다.
-            $('#delete').click(function() {
-                const $form = $('<form>').attr('method', 'post').attr('action', '/cart/delete').appendTo($('body'));
-                $('.pno').each(function(idx, checkbox) {
-                    if ($(this).prop('checked') == true) {
-                        $('<input>').attr('name', 'pnos').attr('type', 'text').val($(this).attr('data-pno')).appendTo($form);
-                    }
-                })
-                if ($form.serialize() != "")
-                    $form.submit();
-            })
+<!--            var url = "/cart";-->
+<!--            var paramData = {-->
+<!--                itemId : $("#itemId").val(),-->
+<!--                count : $("#count").val()-->
+<!--            };-->
 
-            // 상품 결제
-            // 여러 개의 값을 넘기는 방법 2. 서버가 여러 개의 값을 가지고 DTO를 만들고, DTO의 리스트를 갖는 DTO를 또 만든다.
-            $('#order').click(function() {
-                const result = confirm("상품을 주문하시겠습니까?");
-                if (result == true) {
-                    let idx = 0;
-                    const $form = $('<form>').attr('method', 'post').attr('action', '/order/multiple').appendTo($('body'));
-                    $('.pno').each(function(idx, checkbox) {
-                        const pno = parseInt($(checkbox).attr('data-pno'));
-                        const count = parseInt($(checkbox).parent().next().next().find('.count').text());
-                        $('<input>').attr('type', 'hidden').attr('name', 'list[' + idx + '].pno').val(pno).appendTo($form);
-                        $('<input>').attr('type', 'hidden').attr('name', 'list[' + idx + '].count').val(count).appendTo($form);
-                        idx++;
-                    })
-                    $form.submit();
-                }
-            })
-        })
-    </script>
-</head>
-<body>
-<div id="page">
-    <header th:replace="/fragments/header.html">
-    </header>
-    <nav th:replace="/fragments/nav.html">
-    </nav>
-    <div id="main">
-        <aside th:replace="/fragments/aside.html">
-        </aside>
-        <section>
-            <table style="width:100%;" id="cart_table">
-                <tr th:each="item:${list}">
-                    <td style="width:5%;">
-                        <input type="checkbox" th:attr="data-pno=${item.pno}" class="pno">
-                    </td>
-                    <td style="width:10%;">
-                        <img th:src="${item.imagename}" width="75px;" >
-                    </td>
-                    <td style="width:60%;">
-                        <div class="upper">
-                            <span th:text="${item.vendor}">LG</span>
-                            <span th:text="${item.name}">OLED TV</span>
-                        </div>
-                        <div class="lower" style="overflow:hidden;">
-                            <div class="left" style="float:left;">
-                                <span th:text="${item.price}">9500</span>원
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary minus" th:attr="data-pno=${item.pno}">-</button>
-                                    <button type="button" class="btn btn-primary count" th:text="${item.count}"></button>
-                                    <button type="button" class="btn btn-primary plus" th:attr="data-pno=${item.pno}">+</button>
-                                </div>
-                            </div>
-                            <div class="right" style="float:right;">
-                                <button type="button" class="btn btn-primary delete" th:attr="data-pno=${item.pno}">삭제</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td style="width:25%; text-align: center;">
-                        <span th:text="${item.count * item.price}" class="item_price"></span>원
-                    </td>
-                </tr>
-            </table>
-            <div class="well well-sm">총액:<span id="total_price"></span>원</div>
-            <button id="order">결제</button>
-            <button id="delete">선택 상품 삭제</button>
-        </section>
-    </div>
-    <footer th:replace="/fragments/footer.html">
-    </footer>
-</div>
-</body>
-</html>
+<!--            var param = JSON.stringify(paramData);-->
+
+<!--            $.ajax({-->
+<!--                url: url,-->
+<!--                type: "POST",-->
+<!--                contentType: "application/json",-->
+<!--                data: param,-->
+<!--                beforeSend: function(xhr) {-->
+<!--                    /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */-->
+<!--                    xhr.setRequestHeader(header, token);-->
+<!--                },-->
+<!--                dataType: "json",-->
+<!--                cache: false,-->
+<!--                success: function(result, status) {-->
+<!--                    alert("상품을 장바구니에 담았습니다.");-->
+<!--                    location.href = '/';-->
+<!--                },-->
+<!--                error: function(jqXHR, status, error) {-->
+
+<!--                    if (jqXHR.status == '401') {-->
+<!--                        alert('로그인 후 이용해주세요.');-->
+<!--                        location.href = '/members/login';-->
+<!--                    } else {-->
+<!--                        alert(jqXHR.responseText);-->
+<!--                    }-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+<!--</th:block>-->
+
+<!--&lt;!&ndash; 코드 생략 &ndash;&gt;-->
+<!--<button type="button" class="btn btn-light border btn-outline-dark btn-lg" onclick="addCart()">장바구니 담기</button>-->
+<!--&lt;!&ndash; 코드 생략 &ndash;&gt;-->
+
+<!--</html>-->
