@@ -5,16 +5,37 @@
     <title>Title</title>
 </head>
 <body>
+<!--<form th:action="@{'/post/edit/' + ${menuDto.menuID}}" method="post">-->
+<!--    <input type="hidden" name="_method" value="put"/>-->
+<!--    <input type="hidden" name="menuID" th:value="${menuDto.menuID}"/>-->
+
+<!--    이름 : <input type="text" name="menuName" th:value="${menuDto.menuName}"> <br>-->
+<!--    가격 : <input type="text" name="price" th:value="${menuDto.price}"> <br>-->
+<!--    재고 : <input type="text" name="menuCount" th:value="${menuDto.menuCount}"> <br>-->
+
+<!--    <input type="submit" value="수정">-->
+<!--</form>-->
 <form th:action="@{'/post/edit/' + ${menuDto.menuID}}" method="post">
     <input type="hidden" name="_method" value="put"/>
     <input type="hidden" name="menuID" th:value="${menuDto.menuID}"/>
+    <div class="row g-3">
+        <hr/>
+        <div class="col-12">
+            <label for="menuName" class="form-label">상품 이름</label>
+            <input type="text" class="form-control" id="menuName" name="menuName" th:value="${menuDto.menuName}">
+        </div>
 
-    이름 : <input type="text" name="menuName" th:value="${menuDto.menuName}"> <br>
-    가격 : <input type="text" name="price" th:value="${menuDto.price}"> <br>
-    재고 : <input type="text" name="menuCount" th:value="${menuDto.menuCount}"> <br>
+        <div class="col-12">
+            <label for="price" class="form-label">상품 가격</label>
+            <input type="text" class="form-control" id="price" name="price" th:value="${menuDto.price}">
+        </div>
 
-    <input type="submit" value="수정">
+        <div class="col-12">
+            <label for="menuCount" class="form-label">상품 재고</label>
+            <input type="text" class="form-control" id="menuCount" name="menuCount" th:value="${menuDto.menuCount}">
+        </div>
+        <input type="submit" value="수정">
+    </div>
 </form>
-
 </body>
 </html>
