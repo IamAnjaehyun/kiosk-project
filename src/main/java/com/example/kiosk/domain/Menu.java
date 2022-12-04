@@ -26,6 +26,9 @@ public class Menu {
     @Column(nullable = false)
     private Integer menuCount;
 
+    private String imgName;
+    private String imgPath;
+
     @Builder
     public Menu(Long menuID, String menuName, Integer price, Integer menuCount) {
         this.menuID = menuID;
