@@ -1,0 +1,44 @@
+<form th:action="@{/item/new/pro}" method="post" enctype="multipart/form-data">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <div class="row g-3">
+        <hr/>
+        <div class="col-12">
+            <label for="name" class="form-label">상품 이름</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="상품 이름을 입력하세요.">
+            <div class="invalid-feedback">
+                Your name is required.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="text" class="form-label">상품 설명</label>
+            <input type="text" class="form-control" name="text" id="text" placeholder="상품 설명을 입력하세요.">
+            <div class="invalid-feedback">
+                Input is empty.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="price" class="form-label">상품 가격</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="상품 가격을 입력하세요.">
+            <div class="invalid-feedback">
+                Input is empty.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="stock" class="form-label">상품 재고</label>
+            <input type="text" class="form-control" id="stock" name="stock"
+                   placeholder="상품 재고를 입력하세요.">
+            <div class="invalid-feedback">
+                Input is empty.
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="text" class="form-label">상품 이미지 업로드</label>
+            <input type="file" class="form-control" id="imgFile" name="imgFile">
+        </div>
