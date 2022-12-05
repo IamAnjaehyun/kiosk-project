@@ -25,3 +25,14 @@ https://anjh-kiosk.herokuapp.com/
 12/2
 *  CRUD 기능 구현 완료
 *  장바구니 기능 구현 위한 Cart domain, service, repository 생성 (Cartlist domain 생각중)
+
+12/3
+*  CART 와 CARTPRODUCT domain 만들었지만 , 기능 구현 실패
+
+12/4
+*  사진 업로드 위한 여러 자료들을 찾아보았으며, 구현 시도해보았지만 실패
+
+12/5
+*  파일 업로드 기능 구현 완료
+*  로컬환경에서는 파일 업로드 성공하였으나, 호스팅시 상품 등록 자체가 무효화되는 현상
+*  업로드 된 파일을 img로 인식하지 못하는 현상
