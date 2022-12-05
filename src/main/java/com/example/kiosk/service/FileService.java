@@ -1,11 +1,15 @@
 package com.example.kiosk.service;
 
 import com.example.kiosk.domain.File;
+import com.example.kiosk.domain.Menu;
 import com.example.kiosk.domain.Repository.FileRepository;
 import com.example.kiosk.dto.FileDto;
+import com.example.kiosk.dto.MenuDto;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FileService {
@@ -31,5 +35,23 @@ public class FileService {
                 .filePath(file.getFilePath())
                 .build();
         return fileDto;
+    }
+
+    @Transactional
+    public List<FileDto> getFilelist(){
+        List<File> files = fileRepository.findAll();
+        List<FileDto> fileDtoList = new ArrayList<>();
+
+        for(File file : files){
+            FileDto fileDto = FileDto.builder()
+                    .id(file.getId())
+                    .origFilename(file.getOrigFilename())
+                    .filePath(file.getFilePath())
+                    .filename(file.getFilename())
+                    .build();
+
+            fileDtoList.add(fileDto);
+        }
+        return fileDtoList;
     }
 }
