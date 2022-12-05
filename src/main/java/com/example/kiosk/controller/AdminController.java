@@ -1,8 +1,14 @@
 package com.example.kiosk.controller;
 
 import com.example.kiosk.domain.Menu;
+import com.example.kiosk.dto.FileDto;
 import com.example.kiosk.dto.MenuDto;
+import com.example.kiosk.service.FileService;
 import com.example.kiosk.service.MenuService;
+import com.example.kiosk.util.MD5Generator;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -19,11 +27,16 @@ public class AdminController {
 
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private FileService fileService;
 
-    public AdminController(MenuService menuService) {
+    public AdminController(MenuService menuService, FileService fileService) {
         this.menuService = menuService;
+        this.fileService = fileService;
     }
 
+
+    //조회
     @GetMapping("/")
     public String list(Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
@@ -32,17 +45,48 @@ public class AdminController {
         return "admin_menu";
     }
 
+    //등록
     @GetMapping("/post")
     public String write() {
         return "write";
     }
 
+    //등록
     @PostMapping("/post")
-    public String write(MenuDto menuDto) {
-        menuService.savePost(menuDto);
+    public String write(@RequestParam("file") MultipartFile files, MenuDto menuDto) {
+        try {
+            String origFilename = files.getOriginalFilename();
+            String filename = new MD5Generator(origFilename).toString();
+            /* 실행되는 위치의 'files' 폴더에 파일이 저장됩니다. */
+            String savePath = System.getProperty("user.dir") + "\\files";
+            /* 파일이 저장되는 폴더가 없으면 폴더를 생성합니다. */
+            if (!new File(savePath).exists()) {
+                try{
+                    new File(savePath).mkdir();
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+            String filePath = savePath + "\\" + filename;
+            files.transferTo(new File(filePath));
+
+            FileDto fileDto = new FileDto();
+            fileDto.setOrigFilename(origFilename);
+            fileDto.setFilename(filename);
+            fileDto.setFilePath(filePath);
+
+            Long fileId = fileService.saveFile(fileDto);
+            menuDto.setFileId(fileId);
+            menuService.savePost(menuDto);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/";
     }
 
+
+    //상세보기
     @GetMapping("/post/{menuID}")
     public String detail(@PathVariable("menuID") Long menuID, Model model) {
         MenuDto menuDto = menuService.getMenu(menuID);
@@ -51,7 +95,7 @@ public class AdminController {
         return "detail";
     }
 
-
+    //수정
     @GetMapping("/post/edit/{menuID}")
     public String edit(@PathVariable("menuID") Long menuID, Model model) {
         MenuDto menuDto = menuService.getMenu(menuID);
@@ -60,24 +104,19 @@ public class AdminController {
         return "update";
     }
 
+    //수정 후 저장
     @PutMapping("/post/edit/{menuID}")
     public String update(MenuDto menuDto) {
         menuService.savePost(menuDto);
         return "redirect:/";
     }
 
+    //삭제
     @DeleteMapping("/post/{menuID}")
     public String delete(@PathVariable("menuID") Long menuID) {
         menuService.deletePost(menuID);
 
         return "redirect:/";
     }
-//    보고 사진추가 기능 구현하기
-//    https://velog.io/@rladuswl/8-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8A%A4%ED%84%B0%EB%94%94-%EC%87%BC%ED%95%91%EB%AA%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%81%ED%92%88-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C%EC%99%80-thymeleaf
 
-//    @PostMapping("/post/img/{menuID}")
-//    public String itemSave(@PathVariable("menuID") Menu menu, MultipartFile imgFile) throws Exception {
-//        menuService.saveMenu(menu, imgFile);
-//        return "redirect:/";
-//    }
 }
