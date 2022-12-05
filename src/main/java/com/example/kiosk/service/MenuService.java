@@ -6,14 +6,11 @@ import com.example.kiosk.dto.MenuDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Transactional //db 수정하다 되돌리기 가능
 @Service
@@ -43,7 +40,7 @@ public class MenuService {
                     .menuName(menu.getMenuName())
                     .price(menu.getPrice())
                     .menuCount(menu.getMenuCount())
-                    .fileId(menu.getFileId())
+                    .filePath(menu.getFilePath())
                     .build();
 
             menuDtoList.add(menuDto);
@@ -61,7 +58,7 @@ public class MenuService {
                 .menuName(menu.getMenuName())
                 .price(menu.getPrice())
                 .menuCount(menu.getMenuCount())
-                .fileId(menu.getFileId())
+                .filePath(menu.getFilePath())
 
                 .build();
 
