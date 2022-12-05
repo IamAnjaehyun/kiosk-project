@@ -4,6 +4,8 @@ package com.example.kiosk.dto;
 import com.example.kiosk.domain.Menu;
 import lombok.*;
 
+import javax.persistence.Column;
+
 @Getter
 @Setter
 @ToString
@@ -13,7 +15,7 @@ public class MenuDto {
     private String menuName;
     private Integer price;
     private Integer menuCount;
-
+    private Long fileId;
 
 
     public Menu toEntity()  {
@@ -22,15 +24,17 @@ public class MenuDto {
                   .menuName(menuName)
                   .price(price)
                   .menuCount(menuCount)
+                  .fileId(fileId)
                   .build();
           return build;
     }
 
     @Builder
-    public MenuDto(Long menuID, String menuName, Integer price, Integer menuCount) {
+    public MenuDto(Long menuID, String menuName, Integer price, Integer menuCount, Long fileId) {
         this.menuID = menuID;
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
+        this.fileId = fileId;
     }
 }
