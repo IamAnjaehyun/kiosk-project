@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자:메뉴편집</title>
-    <link rel="stylesheet" href="../static/css/menu.css">
-    <link rel="stylesheet" href="../static/css/paginate.css">
-    <script src="../static/js/paginate.js"></script>
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/paginate.css">
+    <script src="/js/paginate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <body>
 <header>
@@ -47,7 +46,7 @@
                     <td><span th:text="${menu.price}"></span></td>
                     <td><span th:text="${menu.menuCount}"></span></td>
                     <td th:each="file : ${fileList}">
-                        <img th:src="@{${file.filePath}}">
+                        <img th:src="${file.getFilename()}">
                     </td>
 <!--                    <td><img th:src="${menu.fileId}" th:if="${menu.fileId != null}"></td>-->
 <!--                    <td><img th:style="'background-image:url('+ @${menu.fileId} +');'"></td>-->
