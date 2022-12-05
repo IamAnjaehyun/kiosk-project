@@ -40,7 +40,9 @@ public class AdminController {
     @GetMapping("/")
     public String list(Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
+        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
+        model.addAttribute("fileList", fileDtoList);
 
         return "admin_menu";
     }
@@ -51,7 +53,7 @@ public class AdminController {
         return "write";
     }
 
-    //등록
+    //사진등록
     @PostMapping("/post")
     public String write(@RequestParam("file") MultipartFile files, MenuDto menuDto) {
         try {
@@ -89,18 +91,20 @@ public class AdminController {
     //상세보기
     @GetMapping("/post/{menuID}")
     public String detail(@PathVariable("menuID") Long menuID, Model model) {
-        MenuDto menuDto = menuService.getMenu(menuID);
-
-        model.addAttribute("menuDto", menuDto);
+        List<MenuDto> menuDtoList = menuService.getMenulist();
+        List<FileDto> fileDtoList = fileService.getFilelist();
+        model.addAttribute("menuList", menuDtoList);
+        model.addAttribute("fileList", fileDtoList);
         return "detail";
     }
 
     //수정
     @GetMapping("/post/edit/{menuID}")
     public String edit(@PathVariable("menuID") Long menuID, Model model) {
-        MenuDto menuDto = menuService.getMenu(menuID);
-
-        model.addAttribute("menuDto", menuDto);
+        List<MenuDto> menuDtoList = menuService.getMenulist();
+        List<FileDto> fileDtoList = fileService.getFilelist();
+        model.addAttribute("menuList", menuDtoList);
+        model.addAttribute("fileList", fileDtoList);
         return "update";
     }
 
