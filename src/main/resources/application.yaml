@@ -52,8 +52,6 @@ spring:
     restart:
       enabled: true
 
-  image:
-    path: /Users/ANJH/Documents/
 ---
 #spring:
 #
