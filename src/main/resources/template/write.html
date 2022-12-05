@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body> -->
 <!--<form action="/post" method="post">-->
 <!--    이름 : <input type="text" name="menuName"> <br>-->
 <!--    가격 : <input type="text" name="price"> <br>-->
@@ -40,8 +40,12 @@
 <head>
     <meta charset="UTF-8" />
     <title> 메뉴 등록 </title>
+    <link rel="stylesheet" href="../static/css/write.css">
 </head>
 <body>
+    <div class="top">
+        <h2>메뉴 등록</h2>
+    </div>
 <div class="container">
     <form action="/post" method="post" enctype="multipart/form-data">
         <div class="form-group row">
@@ -53,7 +57,7 @@
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label"><strong>메뉴 가격</strong></label>
             <div class="col-sm-10">
-                <textarea type="text" name="price" class="form-control" id="price"></textarea>
+                <input type="text" name="price" class="form-control" id="price"></input>
             </div>
         </div>
         <div class="form-group row">
@@ -66,7 +70,7 @@
             <label for="inputFile" class="col-sm-2 col-form-label"><strong>첨부 파일</strong></label>
             <div class="col-sm-10">
                 <div class="custom-file" id="inputFile">
-                    <input name="file" type="file" class="custom-file-input" id="customFile" />
+                    <input name="file" type="file" class="custom-file-input" id="customFile" /><br>
                     <label class="custom-file-label" for="customFile">파일을 선택해 주세요.</label>
                 </div>
             </div>
