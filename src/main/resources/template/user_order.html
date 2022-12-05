@@ -25,10 +25,8 @@
                 <button type="button"
                         th:menu="${menu}"
                         th:onclick="addMenu([[${menu}]])">
-                    <span th:each="file : ${fileList}">
-                        <img th:src="${file.filePath}" th:if="${file.filePath != null}">
-                    </span>
-<!--                    <span th:style="'background-image:url('+ @{/images/sample-visual01.jpg} +');'"></span>-->
+                    <img th:src="@{${menu.filePath}}">
+                    <!--                    <span th:style="'background-image:url('+ @{/images/sample-visual01.jpg} +');'"></span>-->
                 </button>
                 <div th:text="${menu.menuName}">햄버거</div>
                 <div th:text="${menu.price} + '원'">9000원</div>
@@ -37,30 +35,26 @@
         </div>
 
     </div>
+    <form>
+        <div class="basket">
+            <div class="list">
+                <table cellpadding=1>
+                    <thead>
+                    <tr>
+                        <th>메뉴 순번</th>
+                        <th>이름</th>
+                        <th>가격</th>
+                        <th>수정</th>
+                    </tr>
+                    </thead>
+                    <tbody id="menuBody">
 
-    <div class="basket">
-        <div class="list">
-            <table cellpadding=1>
-                <thead>
-                <tr>
-                    <th>메뉴 순번</th>
-                    <th>이름</th>
-                    <th>가격</th>
-                    <th>수정</th>
-                </tr>
-                </thead>
-                <tbody id="menuBody">
-
-                </tbody>
-
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="radio">
-            <input type="radio" id="radio1" name="place" value="restorant"><label for="radio1">매장식사</label>
-            <input type="radio" id="radio2" name="place" value="takeout"><label for="radio2">포장</label>
-        </div>
-        <button id="topay" type="button" onclick="location.href='/pay'">결제화면으로</button>
-    </div>
+    </form>
+    <button id="topay" type="button" onclick="payment()">결제</button>
 </div>
 </div>
 <script type="text/javascript">
@@ -71,15 +65,30 @@
     function addMenu(menu) {
         var menuBody = $('#menuBody')
 
-        var html = '<tr>'
-        html += '<td>' +  + '</td>'
+        console.log(menu);
+
+        if($('#' + menu.menuID).length>0) {
+            return;
+        }
+
+        var html = '<tr id="' + menu.menuID + '">'
+        html += '<td>' + +'</td>'
         html += '<td>' + menu.menuName + '</td>'
         html += '<td>' + menu.price + '</td>'
         html += '<td><button type="button" onclick=""></button></td>'
         html += '</tr>'
         console.log(html)
         menuBody.append(html)
+
+        // 결제버튼 누르면 -> 바스코에있는ㄷ ㅔ이터가
+        // 결제버튼 - > 스크립트 펑션
     }
+
+    function payment(){
+        menubody = $("#menuBody");
+        console.log(menubody)
+    }
+
 </script>
 </body>
 </html>
