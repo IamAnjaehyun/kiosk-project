@@ -43,6 +43,7 @@ public class MenuService {
                     .menuName(menu.getMenuName())
                     .price(menu.getPrice())
                     .menuCount(menu.getMenuCount())
+                    .fileId(menu.getFileId())
                     .build();
 
             menuDtoList.add(menuDto);
@@ -59,6 +60,8 @@ public class MenuService {
                 .menuName(menu.getMenuName())
                 .price(menu.getPrice())
                 .menuCount(menu.getMenuCount())
+                .fileId(menu.getFileId())
+
                 .build();
 
         return menuDto;
