@@ -1,6 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
 <form th:action="/post/img/{menuID}" method="post" enctype="multipart/form-data">
     <div class="row g-3">
-        <hr/>
+        <div class="col-12">
+            <label for="imgFile" class="form-label">상품 이미지 업로드</label>
+            <input type="file" class="form-control" id="imgFile" name="imgFile">
+        </div>
         <div class="col-12">
             <label for="menuName" class="form-label">상품 이름</label>
             <input type="text" class="form-control" id="menuName" name="menuName" placeholder="상품 이름을 입력하세요.">
@@ -17,9 +26,6 @@
                    placeholder="상품 재고를 입력하세요.">
         </div>
 
-        <div class="col-12">
-            <label for="imgFile" class="form-label">상품 이미지 업로드</label>
-            <input type="file" class="form-control" id="imgFile" name="imgFile">
-        </div>
+
     </div>
 </form>
