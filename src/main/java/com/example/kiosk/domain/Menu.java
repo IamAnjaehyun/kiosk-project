@@ -24,16 +24,20 @@ public class Menu {
     private Integer price; // 메뉴 가격
 
     @Column(nullable = false)
-    private Integer menuCount;
+    private Integer menuCount; // 재고량
+
+    @Column(nullable = true)
+    private Long fileId;
 
 //    private String imgName;
 //    private String imgPath;
 
     @Builder
-    public Menu(Long menuID, String menuName, Integer price, Integer menuCount) {
+    public Menu(Long menuID, String menuName, Integer price, Integer menuCount, Long fileId) {
         this.menuID = menuID;
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
+        this.fileId = fileId;
     }
 }
