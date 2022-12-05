@@ -19,6 +19,12 @@ spring:
     username: u5ir6w5clvtodsmt
     password: sy66v87a7dhjwkmk
 
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+
 
   #    url: jdbc:mysql://u5ir6w5clvtodsmt:sy66v87a7dhjwkmk@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/i8wms28a02iwrvld
   #    username: u5ir6w5clvtodsmt
@@ -51,9 +57,6 @@ spring:
       enabled: true
     restart:
       enabled: true
-
-  image:
-    path: /Users/ANJH/Documents/
 ---
 #spring:
 #
