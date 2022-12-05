@@ -25,7 +25,10 @@
                 <button type="button"
                         th:menu="${menu}"
                         th:onclick="addMenu([[${menu}]])">
-                    <img th:src="${menu.fileId}" th:if="${menu.fileId != null}">
+                    <span th:each="file : ${fileList}">
+                        <img th:src="${file.filePath}" th:if="${file.filePath != null}">
+                    </span>
+<!--                    <span th:style="'background-image:url('+ @{/images/sample-visual01.jpg} +');'"></span>-->
                 </button>
                 <div th:text="${menu.menuName}"></div>
                 <div th:text="${menu.price} + '원'"></div>
