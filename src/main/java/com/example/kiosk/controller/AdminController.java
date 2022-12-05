@@ -1,14 +1,8 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.domain.Menu;
-import com.example.kiosk.dto.FileDto;
 import com.example.kiosk.dto.MenuDto;
-import com.example.kiosk.service.FileService;
 import com.example.kiosk.service.MenuService;
 import com.example.kiosk.util.MD5Generator;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -27,12 +20,11 @@ public class AdminController {
 
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private FileService fileService;
 
-    public AdminController(MenuService menuService, FileService fileService) {
+
+    public AdminController(MenuService menuService) {
         this.menuService = menuService;
-        this.fileService = fileService;
+//        this.fileService = fileService;
     }
 
 
@@ -40,9 +32,9 @@ public class AdminController {
     @GetMapping("/")
     public String list(Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
-        List<FileDto> fileDtoList = fileService.getFilelist();
+//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-        model.addAttribute("fileList", fileDtoList);
+//        model.addAttribute("fileList", fileDtoList);
 
         return "admin_menu";
     }
@@ -70,16 +62,11 @@ public class AdminController {
                     e.getStackTrace();
                 }
             }
-            String filePath = savePath + filename;
-            files.transferTo(new File(filePath));
+            String realfilePath = savePath + filename;
+            files.transferTo(new File(realfilePath));
 
-            FileDto fileDto = new FileDto();
-            fileDto.setOrigFilename(origFilename);
-            fileDto.setFilename(filename);
-            fileDto.setFilePath(filePath);
-
-            Long fileId = fileService.saveFile(fileDto);
-            menuDto.setFileId(fileId);
+            String filePath = "/files/" + filename;
+            menuDto.setFilePath(filePath);
             menuService.savePost(menuDto);
         } catch(Exception e) {
             e.printStackTrace();
@@ -88,13 +75,15 @@ public class AdminController {
     }
 
 
+
+
     //상세보기
     @GetMapping("/post/{menuID}")
     public String detail(@PathVariable("menuID") Long menuID, Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
-        List<FileDto> fileDtoList = fileService.getFilelist();
+//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-        model.addAttribute("fileList", fileDtoList);
+//        model.addAttribute("fileList", fileDtoList);
         return "detail";
     }
 
@@ -102,9 +91,9 @@ public class AdminController {
     @GetMapping("/post/edit/{menuID}")
     public String edit(@PathVariable("menuID") Long menuID, Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
-        List<FileDto> fileDtoList = fileService.getFilelist();
+//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-        model.addAttribute("fileList", fileDtoList);
+//        model.addAttribute("fileList", fileDtoList);
         return "update";
     }
 

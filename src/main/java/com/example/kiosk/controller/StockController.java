@@ -1,8 +1,6 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.dto.FileDto;
 import com.example.kiosk.dto.MenuDto;
-import com.example.kiosk.service.FileService;
 import com.example.kiosk.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,15 +17,15 @@ public class StockController {
 
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private FileService fileService;
+//    @Autowired
+//    private FileService fileService;
 
     @GetMapping("/stock")
     public String stock(Model model){
         List<MenuDto> menuDtoList = menuService.getMenulist();
-        List<FileDto> fileDtoList = fileService.getFilelist();
+//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-        model.addAttribute("fileList", fileDtoList);
+//        model.addAttribute("fileList", fileDtoList);
 
         return "admin_stock";
     }
