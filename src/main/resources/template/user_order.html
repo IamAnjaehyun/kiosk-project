@@ -54,7 +54,7 @@
             </div>
         </div>
     </form>
-    <button id="topay" type="button" onclick="payment()">결제</button>
+    <button id="topay" type="button" onclick="payment()">(메뉴 총 가격) + 결제</button>
 </div>
 </div>
 <script type="text/javascript">
@@ -74,7 +74,7 @@
         var html = '<tr id="' + menu.menuID + '">'
         html += '<td>' + menu.menuName + '</td>'
         html += '<td>' + menu.price + '</td>'
-        html += '<td>' + '메뉴갯수 제어'+'</td>'
+        html += '<td><input type="number" class="edt-qty" value="0" min="0"></td>'
         html += '<td><button type="button" onclick="">삭제</button></td>'
         html += '</tr>'
         console.log(html)
