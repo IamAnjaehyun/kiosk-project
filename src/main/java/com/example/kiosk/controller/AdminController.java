@@ -24,7 +24,6 @@ public class AdminController {
 
     public AdminController(MenuService menuService) {
         this.menuService = menuService;
-//        this.fileService = fileService;
     }
 
 
@@ -32,9 +31,7 @@ public class AdminController {
     @GetMapping("/")
     public String list(Model model) {
         List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
 
         return "admin_menu";
     }
@@ -79,21 +76,19 @@ public class AdminController {
 
     //상세보기
     @GetMapping("/post/{menuID}")
-    public String detail(@PathVariable("menuID") Long menuID, Model model) {
-        List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
-        model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
+    public String detail(@PathVariable("menuID") Long menuID, Model model){
+        MenuDto menuDto = menuService.getMenu(menuID);
+        model.addAttribute("menuDto",menuDto);
         return "detail";
     }
 
+
+
     //수정
     @GetMapping("/post/edit/{menuID}")
-    public String edit(@PathVariable("menuID") Long menuID, Model model) {
-        List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
-        model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
+    public String edit(@PathVariable("menuID") Long menuID, Model model){
+        MenuDto menuDto = menuService.getMenu(menuID);
+        model.addAttribute("menuDto",menuDto);
         return "update";
     }
 
