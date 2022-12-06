@@ -1,23 +1,39 @@
-//package com.example.kiosk.domain;
-//
-//import lombok.Builder;
-//
-//import javax.persistence.*;
-//import java.util.Set;
-//
-//@Entity
-//public class Cart {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long billID; // 주문 코드
-//
-//    @Column(nullable = false)
-//    private Long menuID;
-//
-//    @Builder
-//    public Cart(Long billID, Long menuID) {
-//        this.billID = billID;
-//        this.menuID = menuID;
-//    }
-//}
+package com.example.kiosk.domain;
+
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+//카트 하나에 여러개의 상품이 담길 수 있어야함
+
+
+@Data
+@NoArgsConstructor
+@Getter@Setter
+@Entity
+public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long cartID;
+
+    private Long menuID;
+
+    private Integer menuCount;
+    private Integer price;
+
+    // 총액
+    private Integer totalPrice;
+
+    @Builder
+    public Cart(Long cartID, Long menuID, Integer menuCount, Integer price, Integer totalPrice) {
+        this.cartID = cartID;
+        this.menuID = menuID;
+        this.menuCount = menuCount;
+        this.price = price;
+        this.totalPrice = totalPrice; //총액 어케?
+    }
+}

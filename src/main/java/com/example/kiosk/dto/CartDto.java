@@ -1,28 +1,32 @@
-//package com.example.kiosk.dto;
-//
-//import com.example.kiosk.domain.Cart;
-//import lombok.*;
-//
-//@Getter
-//@Setter
-//@ToString
-//@NoArgsConstructor
-//public class CartDto {
-//    private Long billID;
-//    private Long menuID;
-//
-//    public Cart toEntity()  {
-//        Cart build = Cart.builder()
-//                .billID(menuID)
-//                .menuID(menuID)
-//                .build();
-//        return build;
-//    }
-//
-//
-//    @Builder
-//    public CartDto(Long billID, Long menuID) {
-//        this.billID = billID;
-//        this.menuID = menuID;
-//    }
-//}
+package com.example.kiosk.dto;
+
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Data
+public class CartDto {
+
+    private Long cartID;
+    private Long menuID;
+    private Integer menuCount;
+    private Integer price;
+    // 총액
+    private Integer totalPrice;
+
+    @Builder
+    public CartDto(Long cartID, Long menuID, Integer menuCount, Integer price, Integer totalPrice) {
+        this.cartID = cartID;
+        this.menuID = menuID;
+        this.menuCount = menuCount;
+        this.price = price;
+        this.totalPrice = totalPrice;
+    }
+}
