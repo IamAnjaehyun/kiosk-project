@@ -3,11 +3,12 @@
 //import com.example.kiosk.domain.Cart;
 //import lombok.*;
 //
+//
 //@Getter
 //@Setter
 //@ToString
 //@NoArgsConstructor
-//public class CartDto {
+//public class CartProductDto {
 //    private Long billID;
 //    private Long menuID;
 //
@@ -21,7 +22,7 @@
 //
 //
 //    @Builder
-//    public CartDto(Long billID, Long menuID) {
+//    public CartProductDto(Long billID, Long menuID) {
 //        this.billID = billID;
 //        this.menuID = menuID;
 //    }

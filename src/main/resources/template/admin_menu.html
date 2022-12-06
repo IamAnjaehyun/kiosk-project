@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자:메뉴편집</title>
     <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/paginate.css">
+    <script src="/js/paginate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <body>
 <header>
@@ -27,16 +28,14 @@
         <div class="layout">
             <a th:href="@{/post}">메뉴 추가하기</a>
         </div>
-
         <div class="table">
-            <table border=1 cellpadding=1>
+            <table class="myTable table hover" border="1">
                 <tr>
                     <th>메뉴 id</th>
                     <th id="menuoption">이름</th>
                     <th>가격</th>
                     <th>재고수량</th>
-
-                    <th></th>
+                    <th>이미지</th>
                 </tr>
                 <tr th:each="menu : ${menuList}">
                     <td><span th:text="${menu.menuID}"></span></td>
@@ -46,10 +45,29 @@
                     </td>
                     <td><span th:text="${menu.price}"></span></td>
                     <td><span th:text="${menu.menuCount}"></span></td>
+                    <td><img th:src="@{${menu.filePath}}" width="150px" height="150px"></td>
+
+<!--                    <td><img th:src="${menu.fileId}" th:if="${menu.fileId != null}"></td>-->
+<!--                    <td><img th:style="'background-image:url('+ @${menu.fileId} +');'"></td>-->
                 </tr>
             </table>
         </div>
+        <input type="search" id="searchBox" placeholder="페이지">
     </div>
 </main>
+<script>
+//페이지 관련 스크립트
+    let options = {
+        numberPerPage:4, //페이지당 컨텐츠 숫자
+        goBar:true,
+        pageCounter:true,
+    };
+
+    let filterOptions = {
+        el:'#searchBox'
+    };
+
+    paginate.init('.myTable',options,filterOptions);
+</script>
 </body>
 </html>
