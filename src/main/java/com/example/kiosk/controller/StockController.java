@@ -17,15 +17,11 @@ public class StockController {
 
     @Autowired
     private MenuService menuService;
-//    @Autowired
-//    private FileService fileService;
 
     @GetMapping("/stock")
     public String stock(Model model){
         List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
-        model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
+        model.addAttribute("menuList",menuDtoList);
 
         return "admin_stock";
     }

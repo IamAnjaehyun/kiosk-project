@@ -47,12 +47,12 @@ body{
 }
 
 .main{
-    padding-top: 20px;
     background-color: white;
     width: 95%;
     height: 600px;
     margin: auto;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 .input{
@@ -113,32 +113,3 @@ button{
     border-radius: 5px;
     background-color: lightgray;
 }
-
-#searchBox{
-    margin-top: 1.5vh;
-    margin-left: 40%;
-    height: 25px;   
-    border: 0;
-    border-radius: 5px;
-    background-color: lightgray;
-    padding-left: 5px;
-}
-
-.layout{
-    background-color: steelblue;
-    border: 0;
-    border-radius: 5px;
-    width: 15%;
-    height: 40px;
-    text-align: center;
-    color: white;
-    line-height: 40px;
-    margin-left: 80%;
-}
-
-div.paginate{
-    padding: 5px 0px;
-    margin-top: 6%;
-    margin-left: 35%;
-}
-

@@ -2,37 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>세부사항</title>
-    <link rel="stylesheet" href="/css/detail.css">
+    <title>Title</title>
 </head>
 <body>
-<div class="top">
-    <h2>메뉴 세부사항</h2>
-</div>
-<div class="container">
-    <div>
-        <div class="menuinfo"><a>메뉴 사진</a></div>
-        <td><img th:src="@{${menuDto.filePath}}" width="150px" height="150px"></td>
-        <div class="menuinfo"><a>메뉴 번호</a></div>
-        <h2 th:text="${menuDto.menuID}"></h2>
-        <div class="menuinfo"><a>메뉴 이름</a></div>
-        <p th:text="${menuDto.menuName}"></p>
-        <div class="menuinfo"><a>메뉴 가격</a></div>
-        <p th:text="${menuDto.price}"></p>
+<h2 th:text="${menuDto.menuID}"></h2>
 
+<p th:text="${menuDto.menuName}"></p>
 
-        <!-- 수정/삭제 -->
-        <div class="btndiv">
-            <a th:href="@{'/post/edit/' + ${menuDto.menuID}}">
-                <button>수정</button>
-            </a>
-            <form id="delete-form" th:action="@{'/post/' + ${menuDto.menuID}}" method="post">
-                <input type="hidden" name="_method" value="delete"/>
-                <button id="delete-btn">삭제</button>
-            </form>
-            <button onclick="history.back()">뒤로가기</button>
-        </div>
-    </div>
+<!-- 수정/삭제 -->
+<div>
+    <a th:href="@{'/post/edit/' + ${menuDto.menuID}}">
+        <button>수정</button>
+    </a>
+
+    <form id="delete-form" th:action="@{'/post/' + ${menuDto.menuID}}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button id="delete-btn">삭제</button>
+    </form>
 </div>
 
 <script th:inline="javascript">

@@ -40,7 +40,6 @@ public class MenuService {
                     .menuName(menu.getMenuName())
                     .price(menu.getPrice())
                     .menuCount(menu.getMenuCount())
-                    .filePath(menu.getFilePath())
                     .build();
 
             menuDtoList.add(menuDto);
@@ -48,7 +47,6 @@ public class MenuService {
         return menuDtoList;
     }
 
-    @Transactional
     public MenuDto getMenu(Long menuID){
         Optional<Menu> menuWrapper = menuRepository.findById(menuID);
         Menu menu = menuWrapper.get();
@@ -58,8 +56,6 @@ public class MenuService {
                 .menuName(menu.getMenuName())
                 .price(menu.getPrice())
                 .menuCount(menu.getMenuCount())
-                .filePath(menu.getFilePath())
-
                 .build();
 
         return menuDto;

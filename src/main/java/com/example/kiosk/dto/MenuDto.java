@@ -13,7 +13,7 @@ public class MenuDto {
     private String menuName;
     private Integer price;
     private Integer menuCount;
-    private String filePath;
+
 
 
     public Menu toEntity()  {
@@ -22,17 +22,15 @@ public class MenuDto {
                   .menuName(menuName)
                   .price(price)
                   .menuCount(menuCount)
-                  .filePath(filePath)
                   .build();
           return build;
     }
 
     @Builder
-    public MenuDto(Long menuID, String menuName, Integer price, Integer menuCount, String filePath) {
+    public MenuDto(Long menuID, String menuName, Integer price, Integer menuCount) {
         this.menuID = menuID;
         this.menuName = menuName;
         this.price = price;
         this.menuCount = menuCount;
-        this.filePath = filePath;
     }
 }

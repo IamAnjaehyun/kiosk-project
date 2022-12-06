@@ -16,15 +16,11 @@ public class OrderController {
 
     @Autowired
     private MenuService menuService;
-//    @Autowired
-//    private FileService fileService;
 
     @GetMapping("/order")
     public String order(Model model){
         List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
-        model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
+        model.addAttribute("menuList",menuDtoList);
 
         return "user_order";
     }
