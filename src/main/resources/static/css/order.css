@@ -49,7 +49,7 @@ img{
     background-color: lightblue;
     width: 90%;
     margin: auto;
-    height: 40vh;
+    height: 80vh;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -83,9 +83,9 @@ img{
 #topay{
     display: block;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 50px;
     width: 90%;
-    height: 40px;
+    height: 50px;
     background-color: steelblue;
     border: 0;
     border-radius: 10px;

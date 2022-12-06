@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @Controller
@@ -16,18 +17,20 @@ public class OrderController {
 
     @Autowired
     private MenuService menuService;
-//    @Autowired
-//    private FileService fileService;
+
 
     @GetMapping("/order")
     public String order(Model model){
         List<MenuDto> menuDtoList = menuService.getMenulist();
-//        List<FileDto> fileDtoList = fileService.getFilelist();
         model.addAttribute("menuList", menuDtoList);
-//        model.addAttribute("fileList", fileDtoList);
-
         return "user_order";
     }
 
+    @GetMapping("/order/post/{menuID}")
+    public String detail(@PathVariable("menuID") Long menuID, Model model){
+        MenuDto menuDto = menuService.getMenu(menuID);
+        model.addAttribute("menuDto",menuDto);
+        return "user_order_detail";
+    }
 
 }
