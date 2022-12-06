@@ -28,8 +28,8 @@
                     <img th:src="@{${menu.filePath}}">
                     <!--                    <span th:style="'background-image:url('+ @{/images/sample-visual01.jpg} +');'"></span>-->
                 </button>
-                <div th:text="${menu.menuName}">햄버거</div>
-                <div th:text="${menu.price} + '원'">9000원</div>
+                <div th:text="${menu.menuName}"></div>
+                <div th:text="${menu.price} + '원'"></div>
             </div>
             <!-- 메뉴 반복 끝 -->
         </div>
@@ -41,10 +41,10 @@
                 <table cellpadding=1>
                     <thead>
                     <tr>
-                        <th>메뉴 순번</th>
-                        <th>이름</th>
-                        <th>가격</th>
-                        <th>수정</th>
+                        <th>메뉴 이름</th>
+                        <th>메뉴 가격</th>
+                        <th>수량 제어</th>
+                        <th>메뉴 삭제</th>
                     </tr>
                     </thead>
                     <tbody id="menuBody">
@@ -72,14 +72,15 @@
         }
 
         var html = '<tr id="' + menu.menuID + '">'
-        html += '<td>' + +'</td>'
         html += '<td>' + menu.menuName + '</td>'
         html += '<td>' + menu.price + '</td>'
-        html += '<td><button type="button" onclick=""></button></td>'
+        html += '<td>' + '메뉴갯수 제어'+'</td>'
+        html += '<td><button type="button" onclick="">삭제</button></td>'
         html += '</tr>'
         console.log(html)
         menuBody.append(html)
-
+        // 삭제 누르면 없어지게
+        // 메뉴순번 nan 말고 1씩 증가시키고싶음
         // 결제버튼 누르면 -> 바스코에있는ㄷ ㅔ이터가
         // 결제버튼 - > 스크립트 펑션
     }
@@ -87,6 +88,7 @@
     function payment(){
         menubody = $("#menuBody");
         console.log(menubody)
+        //누르면 결제 완료되었습니다 메세지 + 새로고침?
     }
 
 </script>
