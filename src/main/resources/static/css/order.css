@@ -8,14 +8,12 @@ body{
 
 .menubutton{
     width: 90%;
-    background-color: aliceblue;
     margin: auto;
     display: flex;
     justify-content: space-around;
 }
 
 .showmenu{
-    background-color: aliceblue;
     width: 90%;
     margin: auto;
     height: 40vh;
@@ -27,7 +25,6 @@ body{
 }
 
 .menucontents{
-    background-color: lightgray;
     width: 30%;
     height: 15vh;
     margin-top: 10px;
@@ -37,10 +34,7 @@ body{
     justify-content: center;
 }
 
-.menucontents>button{
-    border: 0;
-    background-color: 0;
-}
+
 
 img{
     width: 110px;
@@ -62,8 +56,17 @@ img{
     border-radius: 10px;
 }
 
+#searchBox{
+    margin-top: 1.5vh;
+    margin-left: 40%;
+    height: 25px;   
+    border: 0;
+    border-radius: 5px;
+    background-color: lightgray;
+    padding-left: 5px;
+}
+
 .basket{
-    background-color: aliceblue;
     margin: auto;
     margin-top: 20px;
     width: 90%;
@@ -82,7 +85,7 @@ img{
     margin: auto;
     margin-top: 20px;
     width: 90%;
-    height: 50px;
+    height: 40px;
     background-color: steelblue;
     border: 0;
     border-radius: 10px;
