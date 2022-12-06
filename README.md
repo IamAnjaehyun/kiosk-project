@@ -59,6 +59,7 @@
 12/2
 *  CRUD 기능 구현 완료
 *  장바구니 기능 구현 위한 Cart domain, service, repository 생성 (Cartlist domain 생각중)
+<<<<<<< HEAD
 
 12/3
 *  CART 와 CARTPRODUCT domain 만들었지만 , 기능 구현 실패
@@ -81,3 +82,5 @@
 
 ## 🔗Link
 https://anjh-kiosk.herokuapp.com/
+=======
+>>>>>>> master
