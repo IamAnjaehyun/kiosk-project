@@ -26,7 +26,7 @@ public class Menu {
     @Column(nullable = false)
     private Integer menuCount; // 재고량
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String filePath;
 
 //    private String imgName;
