@@ -1,0 +1,54 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>장바구니</title>-->
+<!--    <link rel="stylesheet" media="all and (max-width: 1024px)" href="/css/stock.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <div class="top">-->
+<!--        <div class="box"></div>-->
+<!--        <div class="maintitle">장바구니</div>-->
+<!--        <div class="box">-->
+<!--            <button id="toqrcode" type="button" onclick="location.href='/index'">qr코드화면</button>-->
+<!--            <button id="tostock" type="button" onclick="location.href='/stock'">재고관리</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</header>-->
+<!--<main>-->
+<!--    <div class="main">-->
+<!--        <div class="table">-->
+<!--            <table border=1 cellpadding=1 >-->
+<!--                <tr>-->
+<!--                    <th>메뉴이름</th>-->
+<!--                    <th>메뉴가격</th>-->
+<!--                    <th>상품갯수</th>-->
+<!--                    <th>주문완료</th>-->
+<!--                </tr>-->
+
+<!--                <tr th:each="menu : ${cartList}">-->
+<!--                    <td><span th:text="${cart.menuName}"></span></td>-->
+<!--                    <td><span th:text="${cart.price}"></span></td>-->
+<!--                    <td><span th:text="${cart.menuCount}"></span></td>-->
+
+<!--                    <td><a th:href="@{/stock/delete?(id=${cart.menuID})}">메뉴삭제</a></td>-->
+
+
+<!--&lt;!&ndash;                        <button type="button" th:href="@{/stock?(id=${menu.menuId})}">+</button></td>&ndash;&gt;-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--            <a>총액도 써야함 어디에둘지 생각</a>-->
+<!--            &lt;!&ndash;            결제하기 누르면 결제가 완료되었습니다 띄우고 order 화면으로 이동&ndash;&gt;-->
+<!--            <button onclick="msg:'결제가 완료되었습니다!'">결제하기</button>-->
+<!--&lt;!&ndash;            그냥 뒤로가서 마저 주문&ndash;&gt;-->
+<!--            <button onclick="history.back()">뒤로가기</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->
