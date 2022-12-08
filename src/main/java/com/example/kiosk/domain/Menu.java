@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class Menu {
 
     @Id
+    @JoinColumn(name = "menuID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long menuID; // 메뉴 코드
 
