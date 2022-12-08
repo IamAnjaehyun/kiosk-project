@@ -2,10 +2,7 @@ package com.example.kiosk.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //카트 하나에 여러개의 상품이 담길 수 있어야함
 
@@ -20,6 +17,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartID;
 
+    @JoinColumn(name = "menuID")
     private Long menuID;
 
     private Integer menuCount;
@@ -36,4 +34,6 @@ public class Cart {
         this.price = price;
         this.totalPrice = totalPrice; //총액 어케?
     }
+
+
 }
