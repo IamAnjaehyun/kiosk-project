@@ -36,7 +36,7 @@ public class AdminController {
         return "admin_menu";
     }
 
-    //등록
+    //등록하러 이동
     @GetMapping("/post")
     public String write() {
         return "write";
