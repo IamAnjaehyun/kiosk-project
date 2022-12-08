@@ -11,19 +11,32 @@
 </div>
 <div class="container">
     <div>
-        <div class="menuinfo"><a>메뉴 사진</a></div>
-        <td><img th:src="@{${menuDto.filePath}}" width="150px" height="150px"></td>
-        <div class="menuinfo"><a>메뉴 이름</a></div>
-        <p th:text="${menuDto.menuName}"></p>
-        <div class="menuinfo"><a>메뉴 가격</a></div>
-        <p th:text="${menuDto.price}"></p>
+        <form action="/cart/post/" method="post" enctype="multipart/form-data">
 
+            <div class="menuinfo"><a>메뉴 사진</a></div>
+            <td><img th:src="@{${menuDto.filePath}}" width="150px" height="150px"></td>
+            <p th:text="${menuDto.menuID}" id="menuID"></p>
+            <div class="menuinfo"><a>메뉴 이름</a></div>
+            <p th:text="${menuDto.menuName}" id="cartName"></p>
+            <div class="menuinfo"><a>메뉴 가격</a></div>
+            <p th:text="${menuDto.price}" id="totalPrice"></p>
 
-        <!-- 수정/삭제 -->
-        <div class="btndiv">
-            <button>장바구니에 추가하기</button>
-            <button onclick="history.back()">뒤로가기</button>
-        </div>
+            <input class="btn btn-primary" type="submit" role="button" value="장바구니에 추가" />
+
+        </form>
+
+        <form class="d-flex" th:action="@{/user/cart/{id}/{menuID}(menuID=${menu.menuID})}" method="post">
+            <div class="d-flex">
+                <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1"
+                       style="max-width: 3rem"/>
+                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    장바구니
+                </button>
+            </div>
+        </form>
+
+        <button onclick="history.back()">뒤로가기</button>
     </div>
 </div>
 

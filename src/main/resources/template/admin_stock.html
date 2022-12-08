@@ -31,14 +31,13 @@
                     <th>주문완료</th>
                 </tr>
 
-                <tr th:each="menu : ${menuList}">
-                    <td><span th:text="${menu.menuID}"></span></td>
-                    <td><span th:text="${menu.menuName}"></span></td>
-                    <td><span th:text="${menu.menuCount}"></span></td>
+                <tr th:each="cart : ${cartList}">
+                    <td><span th:text="${cart.cartID}"></span></td>
+                    <td><span th:text="${cart.menuID}"></span></td>
+                    <td><span th:text="${cart.totalPrice}"></span></td>
 
-                    <td><a th:href="@{/stock/delete?(id=${menu.menuID})}">메뉴 삭제</a></td>
+                    <td><a th:href="@{/stock/delete?(id=${cart.cartID})}">메뉴 삭제</a></td>
 
-<!--                        <button type="button" th:href="@{/stock?(id=${menu.menuId})}">+</button></td>-->
                 </tr>
             </table>
         </div>
