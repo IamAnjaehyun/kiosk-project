@@ -1,5 +1,6 @@
 package com.example.kiosk.controller;
 
+import com.example.kiosk.domain.Menu;
 import com.example.kiosk.dto.CartDto;
 import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.CartService;
@@ -58,5 +59,15 @@ public class CartController {
     public String deleteCart(@PathVariable("cartID") Long cartID) {
         cartService.deleteCart(cartID);
         return "user_order_cart";
+    }
+
+    @PostMapping("/user/cart/{id}/{menuID}")
+    public String addCartItem( @PathVariable("menuID") Long menuID, int amount) {
+
+        Menu item = menuService.getMenulist(menuID);
+
+        cartService.savePost(user, item, amount);
+
+        return "redirect:/item/view/{itemId}";
     }
 }
