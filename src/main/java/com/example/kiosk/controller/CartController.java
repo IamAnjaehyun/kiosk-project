@@ -5,9 +5,11 @@ import com.example.kiosk.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,6 +23,7 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    //카트창으로 들어가기
     @GetMapping("/cart")
     public String cart() {
         return "user_order_cart";
@@ -42,10 +45,10 @@ public class CartController {
         return "user_order";
     }
 
-    //삭제
+    //카트삭제
     @DeleteMapping("/cart/post/{cartID}")
-    public String delete(@PathVariable("menuID") Long menuID) {
-        cartService.deletePost(menuID);
+    public String deleteCart(@PathVariable("cartID") Long cartID) {
+        cartService.deleteCart(cartID);
         return "user_order_cart";
     }
 }

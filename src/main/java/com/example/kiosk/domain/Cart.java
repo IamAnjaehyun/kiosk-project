@@ -3,37 +3,32 @@ package com.example.kiosk.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //카트 하나에 여러개의 상품이 담길 수 있어야함
 
 
 @Data
 @NoArgsConstructor
-@Getter@Setter
+@Getter
+@Setter
 @Entity
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartID;
+    private Long cartID; //카트 번호
 
-    @JoinColumn(name = "menuID")
+    @JoinColumn(name = "menuName")
     private Long menuID;
 
-    private Integer menuCount;
-    private Integer price;
-
-    // 총액
-    private Integer totalPrice;
+    private Integer totalPrice; //총액
 
     @Builder
-    public Cart(Long cartID, Long menuID, Integer menuCount, Integer price, Integer totalPrice) {
+    public Cart(Long cartID, Long menuID, Integer totalPrice) {
         this.cartID = cartID;
         this.menuID = menuID;
-        this.menuCount = menuCount;
-        this.price = price;
         this.totalPrice = totalPrice; //총액 어케?
     }
-
-
 }
