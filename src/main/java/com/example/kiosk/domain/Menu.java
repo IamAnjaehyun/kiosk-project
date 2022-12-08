@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class Menu {
 
     @Id
-    @JoinColumn(name = "menuID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long menuID; // 메뉴 코드
 
@@ -28,10 +27,7 @@ public class Menu {
     private Integer menuCount; // 재고량
 
     @Column(nullable = true)
-    private String filePath;
-
-//    private String imgName;
-//    private String imgPath;
+    private String filePath; //사진 경로
 
     @Builder
     public Menu(Long menuID, String menuName, Integer price, Integer menuCount, String filePath) {
