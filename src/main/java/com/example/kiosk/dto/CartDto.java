@@ -14,7 +14,7 @@ import java.util.List;
 public class CartDto {
 
     private Long cartID;
-    private Long menuID;
+    private Menu menuID;
     // 총액
     private Integer totalPrice;
 
@@ -28,7 +28,7 @@ public class CartDto {
     }
 
     @Builder
-    public CartDto(Long cartID, Long menuID, Integer menuCount,  Integer totalPrice) {
+    public CartDto(Long cartID, Menu menuID,  Integer totalPrice) {
         this.cartID = cartID;
         this.menuID = menuID;
         this.totalPrice = totalPrice;

@@ -1,7 +1,9 @@
 package com.example.kiosk.controller;
 
 import com.example.kiosk.dto.CartDto;
+import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.CartService;
+import com.example.kiosk.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,9 @@ import java.util.List;
 
 public class CartController {
     //카트 조회, 추가, 삭제, 생성
-    @Autowired
     private CartService cartService;
+
+    private MenuService menuService;
 
     public CartController(CartService cartService){
         this.cartService = cartService;
@@ -30,10 +33,13 @@ public class CartController {
     }
 
     //카트조회 싹다조회
-    @GetMapping("/cart")
+    @GetMapping("/cart/list")
     public String list(Model model) {
         List<CartDto> cartDtoList = cartService.getCartlist();
+        List<MenuDto> menuDtoList = menuService.getMenulist();
         model.addAttribute("cartList", cartDtoList);
+        model.addAttribute("menuList", menuDtoList);
+
         return "user_order_cart";
     }
 
@@ -41,7 +47,9 @@ public class CartController {
     @PostMapping("/cart/post")
     public String create(Model model) {
         List<CartDto> cartDtoList = cartService.getCartlist();
+        List<MenuDto> menuDtoList = menuService.getMenulist();
         model.addAttribute("cartList", cartDtoList);
+        model.addAttribute("menuList", menuDtoList);
         return "user_order";
     }
 

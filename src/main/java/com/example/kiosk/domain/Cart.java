@@ -20,13 +20,15 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartID; //카트 번호
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menuName")
-    private Long menuID;
+    private Menu menuID;
 
+    @Column(nullable = true)
     private Integer totalPrice; //총액
 
     @Builder
-    public Cart(Long cartID, Long menuID, Integer totalPrice) {
+    public Cart(Long cartID, Menu menuID, Integer totalPrice) {
         this.cartID = cartID;
         this.menuID = menuID;
         this.totalPrice = totalPrice; //총액 어케?
