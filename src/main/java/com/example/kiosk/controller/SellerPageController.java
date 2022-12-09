@@ -29,7 +29,7 @@ public class SellerController {
     public String detail(@PathVariable("menuID") Long menuID, Model model){
         MenuDto menuDto = menuService.getMenu(menuID);
         model.addAttribute("menuDto",menuDto);
-        return "user_order_detail";
+        return "signin";
     }
 
 }
