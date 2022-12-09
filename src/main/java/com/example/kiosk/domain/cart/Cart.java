@@ -1,5 +1,6 @@
-package com.example.kiosk.domain;
+package com.example.kiosk.domain.cart;
 
+import com.example.kiosk.domain.user.CartItem;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
