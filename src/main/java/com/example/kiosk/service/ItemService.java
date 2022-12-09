@@ -34,7 +34,7 @@ public class ItemService {
         // UUID - 서로 다른 객체들을 구별하기 위한 클래스
         UUID uuid = UUID.randomUUID();
 
-        String savedFileName = uuid + "_" + oriImgName; // 파일명 -> imgName
+        String savedFileName = uuid + ".png"; // 파일명 -> imgName
 
         imgName = savedFileName;
 
@@ -68,9 +68,9 @@ public class ItemService {
     @Transactional
     public void itemModify(Item item, Integer id, MultipartFile imgFile) throws Exception {
 
-        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files/";
+        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/img/";
         UUID uuid = UUID.randomUUID();
-        String fileName = uuid + "_" + imgFile.getOriginalFilename();
+        String fileName = uuid + ".png";
         File saveFile = new File(projectPath, fileName);
         imgFile.transferTo(saveFile);
 
@@ -81,7 +81,7 @@ public class ItemService {
         update.setStock(item.getStock());
         update.setIsSoldout(item.getIsSoldout());
         update.setImgName(fileName);
-        update.setImgPath("/files/"+fileName);
+        update.setImgPath("/img/"+fileName);
         itemRepository.save(update);
     }
 

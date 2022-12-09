@@ -343,7 +343,6 @@ public class UserPageController {
             return "redirect:/main";
         }
     }
-
     // 잔액 충전 페이지
     @Transactional
     @GetMapping("/user/cash/{id}")
