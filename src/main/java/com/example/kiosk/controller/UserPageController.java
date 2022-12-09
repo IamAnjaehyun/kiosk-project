@@ -5,7 +5,6 @@ import com.example.kiosk.dto.CartDto;
 import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.CartService;
 import com.example.kiosk.service.MenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,13 +16,13 @@ import java.util.List;
 
 @Controller
 
-public class CartController {
+public class UserController {
     //카트 조회, 추가, 삭제, 생성
     private CartService cartService;
 
     private MenuService menuService;
 
-    public CartController(CartService cartService){
+    public UserController(CartService cartService){
         this.cartService = cartService;
     }
 
