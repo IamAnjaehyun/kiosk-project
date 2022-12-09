@@ -1,8 +1,6 @@
 package com.example.kiosk.service;
 
-import com.example.kiosk.domain.Menu;
 import com.example.kiosk.domain.Repository.MenuRepository;
-import com.example.kiosk.dto.MenuDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
