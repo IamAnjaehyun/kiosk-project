@@ -1,101 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/order.css">
-    <title>주문화면</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>상품 수정 페이지</title>
 </head>
 <body>
-<header>
-    <div class="top">
-        <h2>백석패스트푸드</h2>
-    </div>
-</header>
-<div class="menulist">
-    <div class="menubutton">
-        <button id="main" type="button">메인 메뉴</button>
-    </div>
-    <div class="showmenu">
-        <div class="mainmenu"> <!--정보 db연동-->
-            <!-- 메뉴 반복 시작-->
-            <div class="menucontents" th:each="menu : ${menuList}">
-                <a th:href="@{'/order/post/' + ${menu.menuID}}">
-                    <button type="button"
-                            th:menu="${menu}">
-                        <img th:src="@{${menu.filePath}}">
-                    </button>
-                    <div th:text="${menu.menuName}"></div>
-                    <div th:text="${menu.price} + '원'"></div>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/main}">kiosk</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/main}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" th:href="@{/item/new}">Upload</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" th:href="@{/seller/manage/{id}(id=${user.getId()})}">Manage</a></li>
+            </ul>
+            <form class="d-flex">
+                <a class="btn btn-outline-dark" href="#" th:text="|현재수익 : ${user.getCoin()} ₩|">
+                    현재잔액 : 10000 ₩
                 </a>
-                <!-- 밑에칸에 추가하는 함수   th:onclick="addMenu([[${menu}]])">&ndash;&gt;-->
-
-
-
-            </div>
-            <!-- 메뉴 반복 끝 -->
-            <button id="topay" type="button" onclick="location.href='/stock'">장바구니로 이동하기</button>
-
+                <a class="btn btn-outline-dark" th:href="@{/seller/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">
+                    판매자 페이지
+                </a>
+                <a class="btn btn-outline-dark" th:href="@{/logout}">
+                    로그아웃
+                </a>
+            </form>
         </div>
-
     </div>
-<!--    <form>-->
-<!--        <div class="basket">-->
-<!--            <div class="list">-->
-<!--                <table cellpadding=1>-->
-<!--                    <thead>-->
-<!--                    <tr>-->
-<!--                        <th>메뉴 이름</th>-->
-<!--                        <th>메뉴 가격</th>-->
-<!--                        <th>수량 제어</th>-->
-<!--                        <th>메뉴 삭제</th>-->
-<!--                    </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody id="menuBody">-->
+</nav>
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>상품 수정</h2>
+        </div>
+        <hr/>
+        <div class="col-md-7 col-lg-8">
+            <form th:action="@{/item/modify/pro/{id}(id=${item.id})}" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+                    <hr/>
+                    <div class="col-12">
+                        <label class="form-label" for="isSoldout">상품 상태</label><br/>
+                        <input type="radio" name="isSoldout" id="isSoldout" value="0">판매중<br/>
+                        <input type="radio" name="isSoldout" id="isSoldout" value="1">품절<br/>
+                        <div class="invalid-feedback">
+                            Input is empty.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="name" class="form-label">상품 이름</label>
+                        <input type="text" class="form-control" id="name" name="name" th:placeholder="${item.getName()}">
+                        <div class="invalid-feedback">
+                            Your name is required.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="text" class="form-label">상품 설명</label>
+                        <input type="text" class="form-control" name="text" id="text" th:placeholder="${item.getText()}">
+                        <div class="invalid-feedback">
+                            Input is empty.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="price" class="form-label">상품 가격</label>
+                        <input type="text" class="form-control" id="price" name="price" th:placeholder="${item.getPrice()}">
+                        <div class="invalid-feedback">
+                            Input is empty.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="stock" class="form-label">상품 재고</label>
+                        <input type="text" class="form-control" id="stock" name="stock"
+                               th:placeholder="${item.getStock()}">
+                        <div class="invalid-feedback">
+                            Input is empty.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="text" class="form-label">상품 이미지 업로드</label>
+                        <input type="file" class="form-control" id="imgFile" name="imgFile">
+                        <div class="invalid-feedback">
+                            Input is empty.
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg mb-3" type="submit">상품 수정</button>
+            </form>
+        </div>
+    </main>
 
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </form>-->
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; https://github.com/IamAnjaehyun/kiosk-project</p>
+    </footer>
 </div>
-</div>
-<script type="text/javascript">
-    window.onload = function () {
-        //alert("test")
-    }
 
-    function addMenu(menu) {
-        var menuBody = $('#menuBody')
-
-        console.log(menu);
-
-        if ($('#' + menu.menuID).length > 0) {
-            return;
-        }
-
-        var html = '<tr id="' + menu.menuID + '">'
-        html += '<td>' + menu.menuName + '</td>'
-        html += '<td>' + menu.price + '</td>'
-        html += '<td><input type="number" class="edt-qty" value="0" min="0"></td>'
-        html += '<td><button type="button" onclick="">삭제</button></td>'
-        html += '</tr>'
-        console.log(html)
-        menuBody.append(html)
-        // 삭제 누르면 없어지게
-        // 메뉴순번 nan 말고 1씩 증가시키고싶음
-        // 결제버튼 누르면 -> 바스코에있는ㄷ ㅔ이터가
-        // 결제버튼 - > 스크립트 펑션
-    }
-
-    function payment() {
-        menubody = $("#menuBody");
-        console.log(menubody)
-        //누르면 결제 완료되었습니다 메세지 + 새로고침?
-    }
-
-</script>
 </body>
+
 </html>
