@@ -1,6 +1,5 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.MenuService;
 import com.example.kiosk.util.MD5Generator;
 import org.slf4j.Logger;
@@ -15,14 +14,14 @@ import java.io.File;
 import java.util.List;
 
 @Controller
-public class AdminController {
+public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @Autowired
     private MenuService menuService;
 
 
-    public AdminController(MenuService menuService) {
+    public AuthController(MenuService menuService) {
         this.menuService = menuService;
     }
 

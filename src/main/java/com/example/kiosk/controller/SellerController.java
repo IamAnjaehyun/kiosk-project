@@ -1,6 +1,5 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.dto.MenuDto;
 import com.example.kiosk.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @Controller
-public class OrderController {
+public class SellerController {
     private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @Autowired

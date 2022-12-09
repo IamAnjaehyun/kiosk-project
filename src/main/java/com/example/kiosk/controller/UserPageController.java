@@ -1,8 +1,6 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.domain.Menu;
-import com.example.kiosk.dto.CartDto;
-import com.example.kiosk.dto.MenuDto;
+import com.example.kiosk.dto.auth.SignupDto;
 import com.example.kiosk.service.CartService;
 import com.example.kiosk.service.MenuService;
 import org.springframework.stereotype.Controller;
@@ -16,13 +14,13 @@ import java.util.List;
 
 @Controller
 
-public class UserController {
+public class UserPageController {
     //카트 조회, 추가, 삭제, 생성
     private CartService cartService;
 
     private MenuService menuService;
 
-    public UserController(CartService cartService){
+    public UserPageController(CartService cartService){
         this.cartService = cartService;
     }
 
@@ -35,7 +33,7 @@ public class UserController {
     //카트조회 싹다조회
     @GetMapping("/cart/list")
     public String list(Model model) {
-        List<CartDto> cartDtoList = cartService.getCartlist();
+        List<SignupDto> cartDtoList = cartService.getCartlist();
         List<MenuDto> menuDtoList = menuService.getMenulist();
         model.addAttribute("cartList", cartDtoList);
         model.addAttribute("menuList", menuDtoList);
@@ -46,7 +44,7 @@ public class UserController {
     //카트에 등록
     @PostMapping("/cart/post")
     public String create(Model model) {
-        List<CartDto> cartDtoList = cartService.getCartlist();
+        List<SignupDto> cartDtoList = cartService.getCartlist();
         List<MenuDto> menuDtoList = menuService.getMenulist();
         model.addAttribute("cartList", cartDtoList);
         model.addAttribute("menuList", menuDtoList);

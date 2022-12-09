@@ -1,7 +1,6 @@
 package com.example.kiosk.controller;
 
-import com.example.kiosk.dto.CartDto;
-import com.example.kiosk.dto.MenuDto;
+import com.example.kiosk.dto.auth.SignupDto;
 import com.example.kiosk.service.CartService;
 import com.example.kiosk.service.MenuService;
 import org.slf4j.Logger;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-public class StockController {
+public class ItemController {
     private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
     @Autowired
@@ -28,7 +27,7 @@ public class StockController {
     @GetMapping("/stock")
     public String stock(Model model){
         List<MenuDto> menuDtoList = menuService.getMenulist();
-        List<CartDto> cartDtoList = cartService.getCartlist();
+        List<SignupDto> cartDtoList = cartService.getCartlist();
         model.addAttribute("menuList", menuDtoList);
         model.addAttribute("cartList", cartDtoList);
 
