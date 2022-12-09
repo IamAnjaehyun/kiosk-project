@@ -1,37 +1,49 @@
 package com.example.kiosk.service;
 
-import com.example.kiosk.domain.Cart;
-import com.example.kiosk.domain.CartItem;
-import com.example.kiosk.domain.Menu;
-import com.example.kiosk.domain.Repository.CartItemRepository;
-import com.example.kiosk.domain.Repository.CartRepository;
-import com.example.kiosk.domain.Repository.MenuRepository;
-import com.example.kiosk.dto.CartDto;
+import com.example.kiosk.domain.cart.Cart;
+import com.example.kiosk.domain.cart.CartRepository;
+import com.example.kiosk.domain.cartitem.CartItem;
+import com.example.kiosk.domain.cartitem.CartItemRepository;
+import com.example.kiosk.domain.item.Item;
+import com.example.kiosk.domain.item.ItemRepository;
+import com.example.kiosk.domain.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Transactional //db 수정하다 되돌리기 가능
 @Service
 @RequiredArgsConstructor
 public class CartService {
-    private CartRepository cartRepository;
-    private MenuRepository menuRepository;
-    private CartItemRepository cartItemRepository;
 
-    @Transactional
-    public void addCart(Menu newMenu, int amount) {
+    private final CartRepository cartRepository;
+    private final ItemRepository itemRepository;
+    private final CartItemRepository cartItemRepository;
 
+    // 회원가입 하면 회원당 카트 하나 생성
+    public void createCart(User user){
 
-        Cart cart = new Cart();
+        Cart cart = Cart.createCart(user);
+
         cartRepository.save(cart);
+    }
 
-        Menu menu = menuRepository.findMenuById(newMenu.getMenuID());
+    // 장바구니 담기
+    @Transactional
+    public void addCart(User user, Item newItem, int amount) {
+
+        // 유저 id로 해당 유저의 장바구니 찾기
+        Cart cart = cartRepository.findByUserId(user.getId());
+
+        // 장바구니가 존재하지 않는다면
+        if (cart == null) {
+            cart = Cart.createCart(user);
+            cartRepository.save(cart);
+        }
+
+        Item item = itemRepository.findItemById(newItem.getId());
         CartItem cartItem = cartItemRepository.findByCartIdAndItemId(cart.getId(), item.getId());
 
         // 상품이 장바구니에 존재하지 않는다면 카트상품 생성 후 추가
@@ -51,60 +63,77 @@ public class CartService {
         }
 
         // 카트 상품 총 개수 증가
-        cart.setCount(cart.getCount() + amount);
+        cart.setCount(cart.getCount()+amount);
 
     }
-//
-//    @Autowired
-//    private MenuRepository menuRepository;
-//    @Autowired
-//    private CartRepository cartRepository;
-//
-//    public CartService(CartRepository cartRepository){
-//        this.cartRepository = cartRepository;
-//    }
-//
-//    @Transactional
-//    public Long savePost(CartDto cartDto){
-//        return cartRepository.save(cartDto.toEntity()).getCartID();
-//    }
-//
-//    @Transactional
-//    public List<CartDto> getCartlist(){
-//        List<Cart> carts = cartRepository.findAll();
-//        List<CartDto> cartDtoList = new ArrayList<>();
-//
-//        for(Cart cart  : carts){
-//            CartDto cartDto = CartDto.builder()
-//                    .cartID(cart.getCartID())
-//                    .menuID(cart.getMenuID())
-//                    .totalPrice(cart.getTotalPrice())
-//                    .build();
-//
-//            cartDtoList.add(cartDto);
-//        }
-//        return cartDtoList;
-//    }
-//
-//    @Transactional
-//    public CartDto getCart(Long cartID){
-//        Optional<Cart> cartWrapper = cartRepository.findById(cartID);
-//        Cart cart = cartWrapper.get();
-//
-//        CartDto cartDto = CartDto.builder()
-//                .cartID(cart.getCartID())
-//                .menuID(cart.getMenuID())
-//                .totalPrice(cart.getTotalPrice())
-//                .build();
-//
-//        return cartDto;
-//
-//    }
-//
-//    public void deleteCart(Long cartID){
-//        cartRepository.deleteById(cartID);
-//    }
+
+    // 유저 id로 해당 유저의 장바구니 찾기
+    public Cart findUserCart(int userId) {
+
+        return cartRepository.findCartByUserId(userId);
+
+    }
+
+    // 카트 상품 리스트 중 해당하는 유저가 담은 상품만 반환
+    // 유저의 카트 id와 카트상품의 카트 id가 같아야 함
+    public List<CartItem> allUserCartView(Cart userCart) {
+
+        // 유저의 카트 id를 꺼냄
+        int userCartId = userCart.getId();
+
+        // id에 해당하는 유저가 담은 상품들 넣어둘 곳
+        List<CartItem> UserCartItems = new ArrayList<>();
+
+        // 유저 상관 없이 카트에 있는 상품 모두 불러오기
+        List<CartItem> CartItems = cartItemRepository.findAll();
+
+        for(CartItem cartItem : CartItems) {
+            if(cartItem.getCart().getId() == userCartId) {
+                UserCartItems.add(cartItem);
+            }
+        }
+
+        return UserCartItems;
+    }
+
+    // 카트 상품 리스트 중 해당하는 상품 id의 상품만 반환
+    public List<CartItem> findCartItemByItemId(int id) {
+
+        List<CartItem> cartItems = cartItemRepository.findCartItemByItemId(id);
+
+        return cartItems;
+    }
+
+    // 카트 상품 리스트 중 해당하는 상품 id의 상품만 반환
+    public CartItem findCartItemById(int id) {
+
+        CartItem cartItem = cartItemRepository.findCartItemById(id);
+
+        return cartItem;
+    }
+
+    // 장바구니의 상품 개별 삭제
+    public void cartItemDelete(int id) {
+
+        cartItemRepository.deleteById(id);
+    }
+
+    // 장바구니 아이템 전체 삭제 -> 매개변수는 유저 id
+    public void allCartItemDelete(int id) {
+
+        // 전체 cartItem 찾기
+        List<CartItem> cartItems = cartItemRepository.findAll();
+
+        // 반복문을 이용하여 해당하는 User 의 CartItem 만 찾아서 삭제
+        for(CartItem cartItem : cartItems){
+
+            if(cartItem.getCart().getUser().getId() == id) {
+
+                cartItem.getCart().setCount(0);
+
+                cartItemRepository.deleteById(cartItem.getId());
+            }
+        }
+    }
+
 }
-
-
-
