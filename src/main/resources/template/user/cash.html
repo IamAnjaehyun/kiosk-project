@@ -168,12 +168,14 @@
     $('#charge_kakao').click(function () {
         // getter
         var IMP = window.IMP;
-        IMP.init('imp54145885');
+        IMP.init('imp42462653');
         var money = $('input[name="cp_item"]:checked').val();
         console.log(money);
 
         IMP.request_pay({
-            pg: 'kakao',
+            pg: 'kakaopay',
+            pay_method : 'card',
+
             merchant_uid: 'merchant_' + new Date().getTime(),
 
             name: '결제테스트',

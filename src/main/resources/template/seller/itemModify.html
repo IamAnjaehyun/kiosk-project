@@ -54,29 +54,28 @@
                     </div>
                     <div class="col-12">
                         <label for="name" class="form-label">상품 이름</label>
-                        <input type="text" class="form-control" id="name" name="name" th:placeholder="${item.getName()}">
+                        <input type="text" class="form-control" id="name" name="name" th:value="${item.getName()}">
                         <div class="invalid-feedback">
                             Your name is required.
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="text" class="form-label">상품 설명</label>
-                        <input type="text" class="form-control" name="text" id="text" th:placeholder="${item.getText()}">
+                        <input type="text" class="form-control" name="text" id="text" th:value="${item.getText()}">
                         <div class="invalid-feedback">
                             Input is empty.
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="price" class="form-label">상품 가격</label>
-                        <input type="text" class="form-control" id="price" name="price" th:placeholder="${item.getPrice()}">
+                        <input type="text" class="form-control" id="price" name="price" th:value="${item.getPrice()}">
                         <div class="invalid-feedback">
                             Input is empty.
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="stock" class="form-label">상품 재고</label>
-                        <input type="text" class="form-control" id="stock" name="stock"
-                               th:placeholder="${item.getStock()}">
+                        <input type="text" class="form-control" id="stock" name="stock" th:value="${item.getStock()}">
                         <div class="invalid-feedback">
                             Input is empty.
                         </div>
