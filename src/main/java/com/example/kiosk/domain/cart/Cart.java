@@ -1,6 +1,6 @@
 package com.example.kiosk.domain.cart;
-
-import com.example.kiosk.domain.user.CartItem;
+import com.example.kiosk.domain.cartitem.CartItem;
+import com.example.kiosk.domain.user.User;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,35 +8,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-//카트 하나에 여러개의 상품이 담길 수 있어야함
-
-
-//@Data
-//@NoArgsConstructor
-//@Getter
-//@Setter
-//@Entity
-//public class Cart {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long cartID; //카트 번호
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "menuName")
-//    private Menu menuID;
-//
-//    @Column(nullable = true)
-//    private Integer totalPrice; //총액
-//
-//    @Builder
-//    public Cart(Long cartID, Menu menuID, Integer totalPrice) {
-//        this.cartID = cartID;
-//        this.menuID = menuID;
-//        this.totalPrice = totalPrice; //총액 어케?
-//    }
-//}
 
 @Builder
 @NoArgsConstructor
@@ -49,6 +20,10 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    private User user; // 구매자
 
     private int count; // 카트에 담긴 총 상품 개수
 
@@ -63,9 +38,10 @@ public class Cart {
         this.createDate = LocalDate.now();
     }
 
-    public static Cart createCart() {
+    public static Cart createCart(User user) {
         Cart cart = new Cart();
         cart.setCount(0);
+        cart.setUser(user);
         return cart;
     }
 
