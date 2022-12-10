@@ -6,7 +6,7 @@
 
 ## ⚙ 개발 환경
 - 운영체제 : Windows 10
--통합개발환경(IDE) : IntelliJ
+- 통합개발환경(IDE) : IntelliJ
 - JDK 버전 : JDK 1.8
 - 데이터 베이스 : JAWSDB MYSQL
 - 빌드 툴 : Gradle
@@ -77,13 +77,22 @@
 *  파일 업로드 기능 구현 완료 +( 사진 파일 올라가지 않던 것 수정 / path 수정)
 *  css 파일 수정
 *  file domain 삭제 및 menu 도메인에 filepath 추가
-*  기존 배포 경로로 배포시 jar 파일로 압축하여 호스팅 되는 구조이기 때문에</br>
+*  기존 배포 경로로 배포시 jar 파일로 압축하여 호스팅 되는 구조이기 때문에 </br>
    사진 등록시에 aws 사용하여 외부저장소 생성해야함
 *  맥으로 파일 옮기다 git 잘못 건들여서 commit 3일치 날아가서 복구완료
 *  3~4일치 커밋이 2일간 커밋한 것 처럼 바뀜. 
 
 12/7
 *  장바구니 서비스 제작 시작
+
+12/8
+*  메뉴 구조 변경 및 domain 수정
+*  spring security 도입으로 인해 사진을 업로드하여 뿌려줘도 인식하지 못하는 현상 발생
+*  JPA 수정하려 하였으나 실패
+
+12/9 
+*  spirng security 기능 도입으로 인해 cart 및 order 기능 구현 완료
+*  기능 구현 완료 후 heroku로 배포하였으나 회원가입 후 로그인 과정에서 오류 발생
 
 ## 🔗Link
 https://anjh-kiosk.herokuapp.com/
