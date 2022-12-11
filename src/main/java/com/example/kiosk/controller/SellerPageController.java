@@ -29,21 +29,21 @@ class SellerPageController {
     private final SaleService saleService;
 
     // 판매자 프로필 페이지 접속
-    @GetMapping("/seller/{id}")
+    @GetMapping("seller/{id}")
     public String sellerPage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if (principalDetails.getUser().getId() == id) {
             // 로그인이 되어있는 판매자의 id와 판매자 페이지에 접속하는 id가 같아야 함
             model.addAttribute("user", userPageService.findUser(id));
 
-            return "/seller/sellerPage";
+            return "seller/sellerPage";
         } else {
-            return "redirect:/main";
+            return "redirect:main";
         }
 
     }
 
     // 상품 관리 페이지
-    @GetMapping("/seller/manage/{id}")
+    @GetMapping("seller/manage/{id}")
     public String itemManage(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if(principalDetails.getUser().getId() == id) {
             // 로그인이 되어있는 판매자의 id와 상품관리 페이지에 접속하는 id가 같아야 함
@@ -60,14 +60,14 @@ class SellerPageController {
             model.addAttribute("seller", userPageService.findUser(id));
             model.addAttribute("userItem", userItem);
 
-            return "/seller/itemManage";
+            return "seller/itemManage";
         } else {
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 판매 내역 조회 페이지
-    @GetMapping("/seller/salelist/{id}")
+    @GetMapping("seller/salelist/{id}")
     public String saleList(@PathVariable("id")Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         // 로그인이 되어있는 유저의 id와 판매내역에 접속하는 id가 같아야 함
         if (principalDetails.getUser().getId() == id) {
@@ -80,10 +80,10 @@ class SellerPageController {
             model.addAttribute("sellerSaleItems", saleItemList);
             model.addAttribute("seller", userPageService.findUser(id));
 
-            return "/seller/saleList";
+            return "seller/saleList";
         }
         else {
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 }

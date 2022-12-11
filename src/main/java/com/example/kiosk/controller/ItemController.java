@@ -33,7 +33,7 @@ public class ItemController {
 
     // 메인 페이지 html 하나로 통일
     // 메인 페이지 (로그인 안 한 유저) /localhost:8080
-    @GetMapping("/")
+    @GetMapping("")
     public String mainPageNoneLogin(Model model) {
         // 로그인을 안 한 경우
         List<Item> items = itemService.allItemView();
@@ -43,7 +43,7 @@ public class ItemController {
     }
 
     // 메인 페이지 (로그인 유저) - 판매자, 구매자 로 로그인
-    @GetMapping("/main")
+    @GetMapping("main")
     public String mainPage(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if (principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
@@ -52,7 +52,7 @@ public class ItemController {
             model.addAttribute("items", items);
             model.addAttribute("user", userPageService.findUser(sellerId));
 
-            return "/main";
+            return "main";
         } else {
             // 구매자
             int userId = principalDetails.getUser().getId();
@@ -60,41 +60,41 @@ public class ItemController {
             model.addAttribute("items", items);
             model.addAttribute("user", userPageService.findUser(userId));
 
-            return "/main";
+            return "main";
         }
     }
 
     // 상품 등록 페이지 - 판매자만 가능
-    @GetMapping("/item/new")
+    @GetMapping("item/new")
     public String itemSaveForm(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
             model.addAttribute("user", principalDetails.getUser());
 
-            return "/seller/itemForm";
+            return "seller/itemForm";
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 상품 등록 (POST) - 판매자만 가능
-    @PostMapping("/item/new/pro")
+    @PostMapping("item/new/pro")
     public String itemSave(Item item, @AuthenticationPrincipal PrincipalDetails principalDetails, MultipartFile imgFile) throws Exception {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
             item.setSeller(principalDetails.getUser());
             itemService.saveItem(item, imgFile);
 
-            return "redirect:/main";
+            return "redirect:main";
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 상품 수정 페이지 - 판매자만 가능
-    @GetMapping("/item/modify/{id}")
+    @GetMapping("item/modify/{id}")
     public String itemModifyForm(@PathVariable("id") Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
@@ -105,18 +105,18 @@ public class ItemController {
                 model.addAttribute("item", itemService.itemView(id));
                 model.addAttribute("user", principalDetails.getUser());
 
-                return "/seller/itemModify";
+                return "seller/itemModify";
             } else {
-                return "redirect:/main";
+                return "redirect:main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 상품 수정 (POST) - 판매자만 가능
-    @PostMapping("/item/modify/pro/{id}")
+    @PostMapping("item/modify/pro/{id}")
     public String itemModify(Item item, @PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails, MultipartFile imgFile) throws Exception{
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
@@ -126,18 +126,18 @@ public class ItemController {
                 // 상품을 올린 판매자 id와 현재 로그인 중인 판매자의 id가 같아야 수정 가능
                 itemService.itemModify(item, id, imgFile);
 
-                return "redirect:/main";
+                return "redirect:main";
             } else {
-                return "redirect:/main";
+                return "redirect:main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 상품 상세 페이지 - 판매자, 구매자 가능
-    @GetMapping("/item/view/{itemId}")
+    @GetMapping("item/view/{itemId}")
     public String ItemView(Model model, @PathVariable("itemId") Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
@@ -146,7 +146,7 @@ public class ItemController {
             model.addAttribute("item", itemService.itemView(id));
             model.addAttribute("user", user);
 
-            return "/itemView";
+            return "itemView";
         } else {
             // 구매자
             User user = principalDetails.getUser();
@@ -166,21 +166,21 @@ public class ItemController {
             model.addAttribute("item", itemService.itemView(id));
             model.addAttribute("user", user);
 
-            return "/itemView";
+            return "itemView";
         }
     }
 
     // 굳이 ? 로그인시켜놓는다고 하면됨 포스기 킬때
     // 상품 상세 페이지 - 로그인 안 한 유저
-    @GetMapping("/item/view/nonlogin/{id}")
+    @GetMapping("item/view/nonlogin/{id}")
     public String nonLoginItemView(Model model, @PathVariable("id") Integer id) {
         // 로그인 안 한 유저
         model.addAttribute("item", itemService.itemView(id));
-        return "/itemView";
+        return "itemView";
     }
 
     // 상품 삭제 - 판매자만 가능
-    @GetMapping("/item/delete/{id}")
+    @GetMapping("item/delete/{id}")
     public String itemDelete(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
             // 판매자
@@ -190,18 +190,18 @@ public class ItemController {
                 // 상품을 올린 판매자 id와 현재 로그인 중인 판매자의 id가 같아야 삭제 가능
                 itemService.itemDelete(id);
 
-                return "redirect:/main";
+                return "redirect:main";
             } else {
-                return "redirect:/main";
+                return "redirect:main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:/main";
+            return "redirect:main";
         }
     }
 
     // 상품 리스트 페이지 - 로그인 유저
-    @GetMapping("/item/list")
+    @GetMapping("item/list")
     public String itemList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                            String searchKeyword, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
@@ -225,11 +225,11 @@ public class ItemController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("user", user);
 
-        return "/itemList";
+        return "itemList";
     }
 
     // 상품 리스트 페이지 - 로그인 안 한 유저
-    @GetMapping("/nonlogin/item/list")
+    @GetMapping("nonlogin/item/list")
     public String itemList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                            String searchKeyword) {
 
@@ -250,6 +250,6 @@ public class ItemController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "/itemList";
+        return "itemList";
     }
 }

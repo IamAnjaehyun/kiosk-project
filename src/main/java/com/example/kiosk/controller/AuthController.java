@@ -15,17 +15,17 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/signin")
+    @GetMapping("signin")
     public String SigninForm() {
         return "signin";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("signup")
     public String SignupForm() {
         return "signup";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("signup")
     public String signup(SignupDto signupDto) {
         // User에 signupDto 넣음
         User user = signupDto.toEntity();
