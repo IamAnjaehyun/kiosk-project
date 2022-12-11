@@ -4,7 +4,6 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +28,8 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/main/**").authenticated() // 로그인을 요구함
-                .antMatchers("/img/**").permitAll() // 로그인을 요구함
+//                .antMatchers("/img/**").permitAll() // 전체 허용
+//                .antMatchers("/js/**").permitAll() // 전체 허용
                 .anyRequest().permitAll() // 그게 아닌 모든 주소는 인증 필요 없음
                 .and()
                 .formLogin()
@@ -43,13 +43,6 @@ public class SecurityConfig {
     protected WebSecurityCustomizer customize(){
         return (web -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations()));
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.debug(securityDebug)
-//                .ignoring()
-//                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
-//    }
 
 }
 
