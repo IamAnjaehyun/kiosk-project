@@ -67,7 +67,7 @@ class SellerPageController {
     }
 
     // 판매 내역 조회 페이지
-    @GetMapping("seller/salelist/{id}")
+    @GetMapping("seller/saleList/{id}")
     public String saleList(@PathVariable("id")Integer id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         // 로그인이 되어있는 유저의 id와 판매내역에 접속하는 id가 같아야 함
         if (principalDetails.getUser().getId() == id) {
