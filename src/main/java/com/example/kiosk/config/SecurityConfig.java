@@ -27,7 +27,7 @@ public class SecurityConfig {
 
 
         http.authorizeRequests()
-//                .antMatchers("/main/**").authenticated() // 로그인을 요구함
+                .antMatchers("/main/**").authenticated() // 로그인을 요구함
 //                .antMatchers("/img/**").permitAll() // 전체 허용
 //                .antMatchers("/js/**").permitAll() // 전체 허용
                 .anyRequest().permitAll() // 그게 아닌 모든 주소는 인증 필요 없음
