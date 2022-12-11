@@ -70,21 +70,21 @@
                 <li class="nav-item"><a class="nav-link" href="#" th:href="@{/seller/manage/{id}(id=${user.getId()})}" sec:authorize="hasRole('ROLE_SELLER')">Manage</a></li>
             </ul>
 
-            <form class="phonesearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
-                <input type="text" name="searchKeyword">
-                <button class="btn btn-outline-dark" type="submit">검색</button>
-            </form>
-            <form class="phonesearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">
-                <input type="text" name="searchKeyword">
-                <button class="btn btn-outline-dark" type="submit">검색</button>
-            </form>
+<!--            <form class="phonesearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
+<!--                <input type="text" name="searchKeyword">-->
+<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--            </form>-->
+<!--            <form class="phonesearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">-->
+<!--                <input type="text" name="searchKeyword">-->
+<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--            </form>-->
 
             <ul class="nav justify-content">
                 <li class="nav-item flex-grow-1">
-                    <form class="tabletsearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">
-                        <input type="text" name="searchKeyword">
-                        <button class="btn btn-outline-dark" type="submit">검색</button>
-                    </form>
+<!--                    <form class="tabletsearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">-->
+<!--                        <input type="text" name="searchKeyword">-->
+<!--                        <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--                    </form>-->
                 </li>
                 <li class="nav-item">
                     <form class="d-flex mx-1" th:action="@{/signin}" sec:authorize="!isAuthenticated()">
@@ -103,14 +103,14 @@
             </ul>
             
             <div class="d-flex justify-content-center">
-                <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
-                    <input type="text" name="searchKeyword">
-                    <button class="btn btn-outline-dark" type="submit">검색</button>
-                </form>
+<!--                <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
+<!--                    <input type="text" name="searchKeyword">-->
+<!--                    <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--                </form>-->
             </div>
             <form class="d-flex flex-wrap justify-content-center" sec:authorize="hasRole('ROLE_USER')">
-                <a class="btn btn-outline-dark mx-1 my-1" href="#" th:text="|현재잔액 : ${user.getCoin()} ₩|">
-                    현재잔액 : 10000 ₩
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
+                현재잔액 : 10000 ₩
                 </a>
                 <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
                     <i class="bi-cart-fill me-1"></i>
@@ -124,10 +124,10 @@
                     로그아웃
                 </a>
             </form>
-            <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
-                <input type="text" name="searchKeyword">
-                <button class="btn btn-outline-dark" type="submit">검색</button>
-            </form>
+<!--            <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
+<!--                <input type="text" name="searchKeyword">-->
+<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
+<!--            </form>-->
 
             
 
