@@ -37,7 +37,7 @@ class SellerPageController {
 
             return "seller/sellerPage";
         } else {
-            return "redirect:main";
+            return "redirect:/main";
         }
 
     }
@@ -62,7 +62,7 @@ class SellerPageController {
 
             return "seller/itemManage";
         } else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -83,7 +83,7 @@ class SellerPageController {
             return "seller/saleList";
         }
         else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 }

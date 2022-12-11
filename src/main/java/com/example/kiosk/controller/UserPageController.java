@@ -43,7 +43,7 @@ public class UserPageController {
 
             return "user/userPage";
         } else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -57,7 +57,7 @@ public class UserPageController {
 
             return "userModify";
         } else {
-            return "redirect:main";
+            return "redirect:/main";
         }
 
     }
@@ -68,7 +68,7 @@ public class UserPageController {
 
         userPageService.userModify(user);
 
-        return "redirect:user/{id}";
+        return "redirect:/user/{id}";
     }
 
     // 장바구니 페이지 접속
@@ -99,7 +99,7 @@ public class UserPageController {
         }
         // 로그인 id와 장바구니 접속 id가 같지 않는 경우
         else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -112,7 +112,7 @@ public class UserPageController {
 
         cartService.addCart(user, item, amount);
 
-        return "redirect:item/view/{itemId}";
+        return "redirect:/item/view/{itemId}";
     }
 
     // 장바구니에서 물건 삭제
@@ -158,7 +158,7 @@ public class UserPageController {
         }
         // 로그인 id와 장바구니 삭제하려는 유저의 id가 같지 않는 경우
         else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -186,7 +186,7 @@ public class UserPageController {
         }
         // 로그인 id와 주문 내역 접속 id가 같지 않는 경우
         else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -209,7 +209,7 @@ public class UserPageController {
             for (CartItem cartItem : userCartItems) {
                 // 장바구니 안에 있는 상품의 재고가 없거나 재고보다 많이 주문할 경우
                 if (cartItem.getItem().getStock() == 0 || cartItem.getItem().getStock() < cartItem.getCount()) {
-                    return "redirect:main";
+                    return "redirect:/main";
                 }
                 totalPrice += cartItem.getCount() * cartItem.getItem().getPrice();
             }
@@ -217,7 +217,7 @@ public class UserPageController {
             int userCoin = user.getCoin();
             // 유저의 현재 잔액이 부족하다면
             if (userCoin < totalPrice) {
-                return "redirect:main";
+                return "redirect:/main";
             } else {
                 // 유저 돈에서 최종 결제금액 빼야함
                 user.setCoin(user.getCoin() - totalPrice);
@@ -257,9 +257,9 @@ public class UserPageController {
             model.addAttribute("cartItems", userCartItems);
             model.addAttribute("user", userPageService.findUser(id));
 
-            return "redirect:user/cart/{id}";
+            return "redirect:/user/cart/{id}";
         } else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -275,7 +275,7 @@ public class UserPageController {
 
             // 상품의 재고가 0이거나 재고가 적은 경우
             if (item.getStock() == 0 || item.getStock() < count) {
-                return "redirect:main";
+                return "redirect:/main";
             }
 
             // 최종 결제 금액
@@ -284,7 +284,7 @@ public class UserPageController {
             int userCoin = user.getCoin();
             // 유저의 현재 잔액이 부족하다면
             if (userCoin < totalPrice) {
-                return "redirect:main";
+                return "redirect:/main";
             } else {
                 // 유저 돈에서 최종 결제금액 빼야함
                 user.setCoin(user.getCoin() - totalPrice);
@@ -303,7 +303,7 @@ public class UserPageController {
                 orderService.addOneItemOrder(user.getId(), item, count, saleItem);
             }
 
-            return "redirect:user/orderHist/{id}";
+            return "redirect:/user/orderHist/{id}";
         } else {
             return "redirect:/main";
         }
@@ -335,12 +335,12 @@ public class UserPageController {
             //model.addAttribute("message", "주문 취소가 완료되었습니다.");
             //model.addAttribute("searchUrl", "/user/orderHist/{id}");
 
-            return "redirect:user/orderHist/{id}";
+            return "redirect:/user/orderHist/{id}";
 
         }
         // 로그인 id와 주문취소하는 유저 id가 같지 않는 경우 취소 불가
         else {
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
     // 잔액 충전 페이지
@@ -355,7 +355,7 @@ public class UserPageController {
 
             return "user/cash";
         }else{
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -364,6 +364,6 @@ public class UserPageController {
     public String chargePro(int amount, @AuthenticationPrincipal PrincipalDetails principalDetails){
         User user = userPageService.findUser(principalDetails.getUser().getId());
         userPageService.chargePoint(user.getId(),amount);
-        return "redirect:main";
+        return "redirect:/main";
     }
 }

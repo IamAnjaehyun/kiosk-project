@@ -74,7 +74,7 @@ public class ItemController {
             return "seller/itemForm";
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -86,10 +86,10 @@ public class ItemController {
             item.setSeller(principalDetails.getUser());
             itemService.saveItem(item, imgFile);
 
-            return "redirect:main";
+            return "redirect:/main";
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -107,11 +107,11 @@ public class ItemController {
 
                 return "seller/itemModify";
             } else {
-                return "redirect:main";
+                return "redirect:/main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -126,13 +126,13 @@ public class ItemController {
                 // 상품을 올린 판매자 id와 현재 로그인 중인 판매자의 id가 같아야 수정 가능
                 itemService.itemModify(item, id, imgFile);
 
-                return "redirect:main";
+                return "redirect:/main";
             } else {
-                return "redirect:main";
+                return "redirect:/main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
@@ -190,13 +190,13 @@ public class ItemController {
                 // 상품을 올린 판매자 id와 현재 로그인 중인 판매자의 id가 같아야 삭제 가능
                 itemService.itemDelete(id);
 
-                return "redirect:main";
+                return "redirect:/main";
             } else {
-                return "redirect:main";
+                return "redirect:/main";
             }
         } else {
             // 일반 회원이면 거절 -> main
-            return "redirect:main";
+            return "redirect:/main";
         }
     }
 
