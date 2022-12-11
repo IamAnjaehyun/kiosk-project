@@ -61,6 +61,6 @@ spring:
   datasource:
     url: ${JAWSDB-URL}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa.hibernate.ddl-auto: create
+  jpa.hibernate.ddl-auto: update
   sql.init.mode: always
   hikari.maximum-pool-size: 9
