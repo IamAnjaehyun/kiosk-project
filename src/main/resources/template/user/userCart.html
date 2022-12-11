@@ -11,7 +11,7 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 
     <style>
@@ -28,6 +28,9 @@
                 font-size: 3.5rem;
             }
         }
+        form{
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -40,7 +43,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/main}">Home</a></li>
             </ul>
-            <form class="d-flex">
+            <form class="d-flex flex-wrap">
                 <a class="btn btn-outline-dark" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
                     현재잔액 : 10000 ₩
                 </a>
@@ -50,52 +53,19 @@
                     <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
                 </a>
                 <a class="btn btn-outline-dark" th:href="@{/user/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">
-                    마이페이지
+                    @@@님 환영합니다.
                 </a>
                 <a class="btn btn-outline-dark" th:href="@{/logout}">
                     로그아웃
                 </a>
             </form>
-
         </div>
     </div>
 </nav>
 <!---- Cart ---->
 <div class="container-fluid mt-3">
     <div class="row">
-
-        <!-- SIDE BAR -->
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/user/{id}(id=${user.getId()})}">
-                            <span data-feather="home"></span>
-                            마이페이지
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/user/cart/{id}(id=${user.getId()})}">
-                            <span data-feather="home"></span>
-                            장바구니
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/orderHist/{id}(id=${user.getId()})}">
-                            <span data-feather="file"></span>
-                            주문내역
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/cash/{id}(id=${user.getId()})}">
-                            <span data-feather="file"></span>
-                            충전하기
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <main>
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">장바구니</h1>
             </div>
@@ -126,50 +96,50 @@
                 </table>
             </div>
             <hr>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">총 수량</h4>
-                        </div>
-                        <form class="card-body" method="post">
-                            <h1 class="card-title pricing-card-title" th:text="|${user.getCart().getCount()} 개|">$0</h1>
 
-                        </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">총 수량</h4>
+                            </div>
+                            <form class="card-body" method="post">
+                                <h1 class="card-title pricing-card-title" th:text="|${user.getCart().getCount()} 개|">$0</h1>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mt-3">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">총 결제금액</h4>
-                        </div>
-                        <form class="card-body" onsubmit="return orderitem();" th:action="@{/user/cart/checkout/{id}(id=${user.getId()})}" method="post">
-                            <h1 class="card-title pricing-card-title" th:text="|${totalPrice} ₩|">$0</h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>잘못 담은 물건이 있는지 확인해보세요!</li>
-                            </ul>
-                            <button type="submit" class="w-100 btn btn-lg btn-outline-primary">구매하기</button>
-                        </form>
-                        <script th:inline="javascript">
-                            /* <![CDATA[ */
-                            function orderitem() {
-                                var userMoney = [[${user.Coin}]];
-                                var totalPrice = [[${totalPrice}]];
-
-                                if (userMoney < totalPrice) {
-                                    alert("잔액이 부족합니다.")
-                                    return false
-                                } else {
-                                    <!--document.getElementById("buy").innerText = count-->
-                                    return true
+                    <div class="col-sm-6">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">총 결제금액</h4>
+                            </div>
+                            <form class="card-body" onsubmit="return orderitem();" th:action="@{/user/cart/checkout/{id}(id=${user.getId()})}" method="post">
+                                <h1 class="card-title pricing-card-title" th:text="|${totalPrice} ₩|">$0</h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>잘못 담은 물건이 있는지 확인해보세요!</li>
+                                </ul>
+                                <button type="submit" class="w-100 btn btn-lg btn-outline-primary">구매하기</button>
+                            </form>
+                            <script th:inline="javascript">
+                                /* <![CDATA[ */
+                                function orderitem() {
+                                    var userMoney = [[${user.Coin}]];
+                                    var totalPrice = [[${totalPrice}]];
+    
+                                    if (userMoney < totalPrice) {
+                                        alert("잔액이 부족합니다.")
+                                        return false
+                                    } else {
+                                        <!--document.getElementById("buy").innerText = count-->
+                                        return true
+                                    }
                                 }
-                            }
-
-                            <!--button.addEventListener("click",additem)-->
-                            /* ]]> */
-                        </script>
+    
+                                <!--button.addEventListener("click",additem)-->
+                                /* ]]> */
+                            </script>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,5 +149,7 @@
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; https://github.com/IamAnjaehyun/kiosk-project</p>
 </footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

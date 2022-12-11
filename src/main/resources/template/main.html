@@ -9,12 +9,53 @@
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
+    <style>
+        .page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        @media ( max-width: 768px ) {
+            .tabletsearch{
+                display: none;
+            }
+            input[type=text]{
+                font-size: 1rem;
+                margin-right: 10px;
+                width: 70%;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+            }
+        }
+        @media ( min-width: 768px ) {
+            .phonesearch{
+                display: none;
+            }
+            .tabletsearch{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            input[type=text]{
+                font-size: 1rem;
+                margin-right: 10px;
+                width: 70%;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+            }
+        }
+        form{
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" th:href="@{/main}" sec:authorize="isAuthenticated()">kiosk</a>
         <a class="navbar-brand" th:href="@{/}" sec:authorize="!isAuthenticated()">kiosk</a>
@@ -23,62 +64,81 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/main}" sec:authorize="isAuthenticated()">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}" sec:authorize="!isAuthenticated()">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" th:href="@{/item/new}" sec:authorize="hasRole('ROLE_SELLER')">upload</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" th:href="@{/item/new}" sec:authorize="hasRole('ROLE_SELLER')">Upload</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" th:href="@{/seller/manage/{id}(id=${user.getId()})}" sec:authorize="hasRole('ROLE_SELLER')">Manage</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" th:href="@{/item/list}" sec:authorize="isAuthenticated()">All Products</a></li>
-                        <li><a class="dropdown-item" th:href="@{/nonlogin/item/list}" sec:authorize="!isAuthenticated()">All Products</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                    </ul>
+            </ul>
+
+            <form class="phonesearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="btn btn-outline-dark" type="submit">검색</button>
+            </form>
+            <form class="phonesearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="btn btn-outline-dark" type="submit">검색</button>
+            </form>
+
+            <ul class="nav justify-content">
+                <li class="nav-item flex-grow-1">
+                    <form class="tabletsearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">
+                        <input type="text" name="searchKeyword">
+                        <button class="btn btn-outline-dark" type="submit">검색</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form class="d-flex mx-1" th:action="@{/signin}" sec:authorize="!isAuthenticated()">
+                        <button class="btn btn-outline-dark" type="submit">
+                            로그인
+                        </button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form class="d-flex mx-1" th:action="@{/signup}" sec:authorize="!isAuthenticated()">
+                        <button class="btn btn-outline-dark" type="submit">
+                            회원가입
+                        </button>
+                    </form>
                 </li>
             </ul>
-            <form th:action="@{/signin}" sec:authorize="!isAuthenticated()">
-                <button class="btn btn-outline-dark" type="submit">
-                    로그인
-                </button>
-            </form>
-            <form th:action="@{/signup}" sec:authorize="!isAuthenticated()">
-                <button class="btn btn-outline-dark" type="submit">
-                    회원가입
-                </button>
-            </form>
-            <form class="d-flex" sec:authorize="hasRole('ROLE_USER')">
-                <a class="btn btn-outline-dark" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
+            
+            <div class="d-flex justify-content-center">
+                <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
+                    <input type="text" name="searchKeyword">
+                    <button class="btn btn-outline-dark" type="submit">검색</button>
+                </form>
+            </div>
+            <form class="d-flex flex-wrap justify-content-center" sec:authorize="hasRole('ROLE_USER')">
+                <a class="btn btn-outline-dark mx-1 my-1" href="#" th:text="|현재잔액 : ${user.getCoin()} ₩|">
                     현재잔액 : 10000 ₩
                 </a>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle btn-outline-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|${user.getName()}회원님|">
-                        회원님
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <lt><a class="dropdown-item" th:href="@{/user/cart/{id}(id=${user.getId()})}">장바구니</a></lt>
-                        <lt><a class="dropdown-item" th:href="@{/user/orderHist/{id}(id=${user.getId()})}">주문내역</a></lt>
-                    </ul>
-                </div>
-            </form>
-
-            <form class="d-flex" sec:authorize="hasRole('ROLE_SELLER')">
-                <a class="btn btn-outline-dark" href="#" th:text="|현재수익 : ${user.getCoin()} ₩|">
-                    현재잔액 : 10000 ₩
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
                 </a>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle btn-outline-dark" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="|${user.getName()}판매자님|">
-                        판매자님
-                    </button>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <lt><a class="dropdown-item" th:href="@{/seller/{id}(id=${user.getId()})}">판매자페이지</a></lt>
-                        <lt><a class="dropdown-item" th:href="@{/seller/manage/{id}(id=${user.getId()})}">상품관리</a></lt>
-                        <lt><a class="dropdown-item" th:href="@{/seller/salelist/{id}(id=${user.getId()})}">판매내역</a></lt>
-                    </ul>
-                </div>
-            </form>
-            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()" >
-                <button class="btn btn-outline-dark" type="submit">
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/seller/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">
+                    @@@님 환영합니다.
+                </a>
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/logout}">
                     로그아웃
-                </button>
+                </a>
+            </form>
+            <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">
+                <input type="text" name="searchKeyword">
+                <button class="btn btn-outline-dark" type="submit">검색</button>
+            </form>
+
+            
+
+            <form class="d-flex flex-wrap justify-content-center" sec:authorize="hasRole('ROLE_SELLER')">
+                <a class="btn btn-outline-dark mx-1 my-1" href="#" th:text="|현재수익 : ${user.getCoin()} ₩|">
+                    현재잔액 : 100000 ₩
+                </a>
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/seller/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">
+                    @@@님 환영합니다.
+                </a>
+                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/logout}">
+                    로그아웃
+                </a>
             </form>
 
         </div>
