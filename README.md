@@ -15,6 +15,7 @@
 
 ## 🔌 Dependencies
 - Spring Boot DevTools
+- Spring Security
 - Lombok
 - Spring Data JPA
 - Mysql Driver
@@ -32,8 +33,14 @@
 
 
 ## 🛠 DB 설계
-- Menu
-- File
+- Cart
+- CartItem
+- Item
+- Order
+- OrderItem
+- Sale
+- SaleItem
+- User
 
 
 ## 🕹 제작 일지
@@ -93,6 +100,13 @@
 12/9 
 *  spirng security 기능 도입으로 인해 cart 및 order 기능 구현 완료
 *  기능 구현 완료 후 heroku로 배포하였으나 회원가입 후 로그인 과정에서 오류 발생
+
+12/10
+*  Spring Security 버전 업그레이드로 인해 extends 할 수 없는 오류 발생
+*  Bean 처리로 사진 업로드 기능 복구 성공
+
+12/11
+*  사진 업로드시 사진이 깨지는 오류 발생, boot 재구동시 사진이 보이는 현상 발생
 
 ## 🔗Link
 https://anjh-kiosk.herokuapp.com/
