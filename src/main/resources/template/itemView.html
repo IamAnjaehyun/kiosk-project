@@ -14,16 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <style>
-        .page {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
         @media ( max-width: 768px ) {
-            .tabletsearch{
-                display: none;
-            }
             input[type=text]{
                 font-size: 1rem;
                 margin-right: 10px;
@@ -33,15 +24,6 @@
             }
         }
         @media ( min-width: 768px ) {
-            .phonesearch{
-                display: none;
-            }
-            .tabletsearch{
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
             input[type=text]{
                 font-size: 1rem;
                 margin-right: 10px;
@@ -70,21 +52,8 @@
                 <li class="nav-item"><a class="nav-link" href="#" th:href="@{/seller/manage/{id}(id=${user.getId()})}" sec:authorize="hasRole('ROLE_SELLER')">Manage</a></li>
             </ul>
 
-<!--            <form class="phonesearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
-<!--                <input type="text" name="searchKeyword">-->
-<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
-<!--            </form>-->
-<!--            <form class="phonesearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">-->
-<!--                <input type="text" name="searchKeyword">-->
-<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
-<!--            </form>-->
-
             <ul class="nav justify-content">
                 <li class="nav-item flex-grow-1">
-<!--                    <form class="tabletsearch" sec:authorize="!isAuthenticated()" th:action="@{/nonlogin/item/list}" method="get">-->
-<!--                        <input type="text" name="searchKeyword">-->
-<!--                        <button class="btn btn-outline-dark" type="submit">검색</button>-->
-<!--                    </form>-->
                 </li>
                 <li class="nav-item">
                     <form class="d-flex mx-1" th:action="@{/signin}" sec:authorize="!isAuthenticated()">
@@ -103,10 +72,6 @@
             </ul>
             
             <div class="d-flex justify-content-center">
-<!--                <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
-<!--                    <input type="text" name="searchKeyword">-->
-<!--                    <button class="btn btn-outline-dark" type="submit">검색</button>-->
-<!--                </form>-->
             </div>
             <form class="d-flex flex-wrap justify-content-center" sec:authorize="hasRole('ROLE_USER')">
                 <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
@@ -124,12 +89,7 @@
                     로그아웃
                 </a>
             </form>
-<!--            <form class="tabletsearch" sec:authorize="isAuthenticated()" th:action="@{/item/list}" method="get">-->
-<!--                <input type="text" name="searchKeyword">-->
-<!--                <button class="btn btn-outline-dark" type="submit">검색</button>-->
-<!--            </form>-->
 
-            
 
             <form class="d-flex flex-wrap justify-content-center" sec:authorize="hasRole('ROLE_SELLER')">
                 <a class="btn btn-outline-dark mx-1 my-1" href="#" th:text="|현재수익 : ${user.getCoin()} ₩|">
@@ -252,17 +212,6 @@
                     /* ]]> */
                 </script>
 
-
-                <!--<form class="d-flex" sec:authorize="hasRole('ROLE_USER')" th:action="@{/user/cart/{id}/{itemId}(id=${user.id}, itemId=${item.id})}" method="post">
-                    <div class="d-flex">
-                    <input class="form-control text-center me-3" id="amount" name="amount" type="num" value="1"
-                               style="max-width: 3rem"/>
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            장바구니
-                        </button>
-                    </div>
-                </form>-->
 
                 <form class="d-flex" sec:authorize="!isAuthenticated()">
                     <div class="d-flex">
