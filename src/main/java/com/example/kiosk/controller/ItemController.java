@@ -146,7 +146,7 @@ public class ItemController {
             model.addAttribute("item", itemService.itemView(id));
             model.addAttribute("user", user);
 
-            return "itemView";
+            return "/itemView";
         } else {
             // 구매자
             User user = principalDetails.getUser();
@@ -166,7 +166,7 @@ public class ItemController {
             model.addAttribute("item", itemService.itemView(id));
             model.addAttribute("user", user);
 
-            return "itemView";
+            return "/itemView";
         }
     }
 
@@ -176,7 +176,7 @@ public class ItemController {
     public String nonLoginItemView(Model model, @PathVariable("id") Integer id) {
         // 로그인 안 한 유저
         model.addAttribute("item", itemService.itemView(id));
-        return "itemView";
+        return "/itemView";
     }
 
     // 상품 삭제 - 판매자만 가능
@@ -225,7 +225,7 @@ public class ItemController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("user", user);
 
-        return "itemList";
+        return "/itemList";
     }
 
     // 상품 리스트 페이지 - 로그인 안 한 유저
@@ -250,6 +250,6 @@ public class ItemController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "itemList";
+        return "/itemList";
     }
 }

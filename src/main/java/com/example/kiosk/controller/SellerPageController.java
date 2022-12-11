@@ -60,7 +60,7 @@ class SellerPageController {
             model.addAttribute("seller", userPageService.findUser(id));
             model.addAttribute("userItem", userItem);
 
-            return "seller/itemManage";
+            return "/seller/itemManage";
         } else {
             return "redirect:/main";
         }
@@ -80,7 +80,7 @@ class SellerPageController {
             model.addAttribute("sellerSaleItems", saleItemList);
             model.addAttribute("seller", userPageService.findUser(id));
 
-            return "seller/saleList";
+            return "/seller/saleList";
         }
         else {
             return "redirect:/main";
