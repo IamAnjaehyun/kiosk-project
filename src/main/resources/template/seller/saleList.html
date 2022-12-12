@@ -92,25 +92,27 @@
                     <thead>
                     <tr>
                         <th scope="col">번호</th>
-                        <th scope="col">상품ID</th>
+<!--                        <th scope="col">상품ID</th>-->
                         <th scope="col">상품명</th>
                         <th scope="col">판매량</th>
                         <th scope="col">가격</th>
                         <th scope="col">판매수익</th>
                         <th scope="col">판매날짜</th>
-                        <th scope="col">판매현황</th>
+<!--                        <th scope="col">주문현황</th>-->
+                        <th scope="col">판매완료여부</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="saleItem, i: ${sellerSaleItems}" >
                         <td th:text="${i.count}">1</td>
-                        <td th:text="${saleItem.getItemId()}">3번상품</td>
+<!--                        <td th:text="${saleItem.getItemId()}">3번상품</td>-->
                         <td th:text="${saleItem.getItemName()}">상품명</td>
                         <td th:text="${saleItem.getItemCount()}">판매량</td>
                         <td th:text="${saleItem.getItemPrice()}">가격</td>
                         <td th:text="${saleItem.getItemTotalPrice()}">판매수익</td>
                         <td th:text="${saleItem.getCreateDate()}">판매날짜</td>
-                        <td th:text="${saleItem.getIsCancel()} == 0 ? '판매완료' : '판매취소'">판매현황</td>
+<!--                        <td th:text="${saleItem.getIsCancel()} == 0 ? '들어온 주문' : '판매취소'">판매현황</td>-->
+                        <td><input type="checkbox">판매완료</td>
                     </tr>
                     </tbody>
                 </table>
