@@ -37,12 +37,19 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- Navigation-->
 <nav class="navbar navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" th:href="@{/main}" sec:authorize="isAuthenticated()">kiosk</a>
         <a class="navbar-brand" th:href="@{/}" sec:authorize="!isAuthenticated()">kiosk</a>
+        <form sec:authorize="hasRole('ROLE_USER')">
+            <a class="navbar-brand btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
+            </a>
+        </form>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -77,11 +84,6 @@
                 <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
                 현재잔액 : 10000 ₩
                 </a>
-                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
-                </a>
                 <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/seller/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">
                     @@@님 환영합니다.
                 </a>
@@ -108,15 +110,20 @@
 </nav>
 <!-- Product section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{${item.getImgPath()}}" alt="..." /></div>
+    <div class="container d-flex flex-column justify-content-center px-4 px-lg-5 my-5">
+        <div class="row mb-2 gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10">
+                <img class="card-img-top mb-5 mb-md-0" th:src="@{${item.getImgPath()}}" alt="..." />
+            </div>
+        </div>
+
+        <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-6 d-flex flex-column align-items-center">
                 <div class="small mb-1" th:text="|판매자 : ${item.getSeller().getUsername()}|">판매자 이름</div>
                 <div class="small mb-1" th:if="${item.getIsSoldout()} == 0" th:text="|재고 : ${item.getStock()}개|">재고</div>
                 <div class="small mb-1" th:unless="${item.getIsSoldout()} == 0" th:text="|품절|">재고</div>
                 <h1 class="display-5 fw-bolder" th:text="${item.getName()}">상품 이름</h1>
-                <div class="fs-5 mb-5">
+                <div class="fs-5 mb-3">
                     <span th:text="|${item.getPrice()} 원|">아이템 가격</span>
                 </div>
                 <p class="lead" th:text="${item.getText()}">아이템 설명</p>
@@ -231,7 +238,7 @@
     </div>
 </section>
 <!-- Footer-->
-<footer class="my-5 pt-5 text-muted text-center text-small">
+<footer class="my-5 pt-5 mt-auto text-muted text-center text-small">
     <p class="mb-1">&copy; https://github.com/IamAnjaehyun/kiosk-project</p>
 </footer>
 <!-- Bootstrap core JS-->

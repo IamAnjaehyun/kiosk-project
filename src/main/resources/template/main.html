@@ -53,12 +53,19 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- Navigation-->
 <nav class="navbar navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" th:href="@{/main}" sec:authorize="isAuthenticated()">kiosk</a>
         <a class="navbar-brand" th:href="@{/}" sec:authorize="!isAuthenticated()">kiosk</a>
+        <form sec:authorize="hasRole('ROLE_USER')">
+            <a class="navbar-brand btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
+                <i class="bi-cart-fill me-1"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
+            </a>
+        </form>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -89,11 +96,6 @@
                 <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cash/{id}(id=${user.getId()})}" th:text="|현재잔액 : ${user.getCoin()} ₩|">
                     현재잔액 : 10000 ₩
                 </a>
-                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
-                    <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${user.getCart().getCount()}">0</span>
-                </a>
 <!--                <a class="btn btn-outline-dark mx-1 my-1" th:href="@{/seller/{id}(id=${user.getId()})}" th:text="|${user.getName()}님 환영합니다.|">-->
                 <a class="btn btn-outline-dark mx-1 my-1" th:text="|${user.getName()}님 환영합니다.|">
                     @@@님 환영합니다.
@@ -122,7 +124,7 @@
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
 
             <!-- 첫번째 아이템 -->
             <div class="col mb-5" th:each="item : ${items}">
@@ -153,7 +155,7 @@
 </section>
 
 <!-- Footer-->
-<footer class="my-5 pt-5 text-muted text-center text-small">
+<footer class="my-5 pt-5 mt-auto text-muted text-center text-small">
     <p class="mb-1">&copy; https://github.com/IamAnjaehyun/kiosk-project</p>
 </footer>
 <!-- Bootstrap core JS-->
