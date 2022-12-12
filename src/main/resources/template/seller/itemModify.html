@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-12">
                         <label for="text" class="form-label">상품 이미지 업로드</label>
-                        <input type="file" class="form-control" id="imgFile" name="imgFile">
+                        <input type="file" class="form-control" id="imgFile" name="imgFile" th:value="${item.getImgPath()}">
                         <div class="invalid-feedback">
                             Input is empty.
                         </div>
