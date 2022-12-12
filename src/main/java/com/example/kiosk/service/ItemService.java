@@ -3,6 +3,7 @@ package com.example.kiosk.service;
 import com.example.kiosk.domain.cartitem.CartItem;
 import com.example.kiosk.domain.item.Item;
 import com.example.kiosk.domain.item.ItemRepository;
+import com.example.kiosk.md5generator.MD5Generator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,9 +29,9 @@ public class ItemService {
 
         // UUID 를 이용하여 파일명 새로 생성
         // UUID - 서로 다른 객체들을 구별하기 위한 클래스
-        UUID uuid = UUID.randomUUID();
+//        UUID uuid = UUID.randomUUID();
 
-        String imgName = uuid + ".png"; // 파일명 -> imgName
+        String imgName = new MD5Generator(imgFile.getOriginalFilename()).toString();
 
         File saveFile = new File(projectPath, imgName);
 
@@ -63,8 +64,8 @@ public class ItemService {
     public void itemModify(Item item, Integer id, MultipartFile imgFile) throws Exception {
 
         String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/img/";
-        UUID uuid = UUID.randomUUID();
-        String fileName = uuid + ".png";
+//        UUID uuid = UUID.randomUUID();
+        String fileName = new MD5Generator(imgFile.getOriginalFilename()).toString();
         File saveFile = new File(projectPath, fileName);
         imgFile.transferTo(saveFile);
 
