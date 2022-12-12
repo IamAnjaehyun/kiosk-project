@@ -108,5 +108,11 @@
 12/11
 *  사진 업로드시 사진이 깨지는 오류 발생, boot 재구동시 사진이 보이는 현상 발생
 
+12/12
+*  html 구조 변경
+*  파일을 저장할 때 uuid 를 사용하지 않고 MD5Generator을 사용해서 파일명을 저장하도록 변경
+
+12/13
+
 ## 🔗Link
 https://anjh-kiosk.herokuapp.com/
