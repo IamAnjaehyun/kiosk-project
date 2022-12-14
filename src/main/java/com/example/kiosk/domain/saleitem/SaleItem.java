@@ -31,9 +31,6 @@ public class SaleItem {
     @JoinColumn(name = "seller_id")
     private User seller; // 판매자
 
-    //@ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name="item_id")
-    //private Item item;
 
     private int itemId; // 주문 상품 번호
     private String itemName; // 주문 상품 이름
