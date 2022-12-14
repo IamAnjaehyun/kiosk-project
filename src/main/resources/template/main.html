@@ -61,8 +61,8 @@
 <!-- Navigation-->
 <nav class="navbar navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" th:href="@{/main}" sec:authorize="isAuthenticated()">kiosk</a>
-        <a class="navbar-brand" th:href="@{/}" sec:authorize="!isAuthenticated()">kiosk</a>
+        <a class="navbar-brand" th:href="@{/main}" sec:authorize="isAuthenticated()">백석대학교 교수회관</a>
+        <a class="navbar-brand" th:href="@{/}" sec:authorize="!isAuthenticated()">백석대학교 교수회관</a>
         <form sec:authorize="hasRole('ROLE_USER')">
             <a class="navbar-brand btn btn-outline-dark mx-1 my-1" th:href="@{/user/cart/{id}(id=${user.getId()})}">
                 <i class="bi-cart-fill me-1"></i>
