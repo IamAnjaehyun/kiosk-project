@@ -5,7 +5,7 @@
 - 유저 역할을 판매자와 구매자로 나누어 구현하였습니다.
 
 ## ⚙ 개발 환경
-- 운영체제 : Windows 10
+- 운영체제 : Windows 10, MacOS
 - 통합개발환경(IDE) : IntelliJ
 - JDK 버전 : JDK 1.8
 - 데이터 베이스 : JAWSDB MYSQL
