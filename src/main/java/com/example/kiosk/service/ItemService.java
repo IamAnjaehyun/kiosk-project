@@ -18,7 +18,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Service
 public class ItemService {
-
     private final ItemRepository itemRepository;
     private final CartService cartService;
     private final SaleService saleService;
