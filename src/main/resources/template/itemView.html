@@ -128,7 +128,7 @@
 
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-6 d-flex flex-column align-items-center">
-                <div class="small mb-1" th:text="|판매자 : ${item.getSeller().getUsername()}|">판매자 이름</div>
+<!--                <div class="small mb-1" th:text="|판매자 : ${item.getSeller().getUsername()}|">판매자 이름</div>-->
                 <div class="small mb-1" th:if="${item.getIsSoldout()} == 0" th:text="|재고 : ${item.getStock()}개|">재고</div>
                 <div class="small mb-1" th:unless="${item.getIsSoldout()} == 0" th:text="|품절|">재고</div>
                 <h1 class="display-5 fw-bolder" th:text="${item.getName()}">상품 이름</h1>

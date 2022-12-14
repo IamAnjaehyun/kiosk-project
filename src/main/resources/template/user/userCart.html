@@ -64,7 +64,7 @@
                     <thead>
                     <tr>
                         <th scope="col">번호</th>
-                        <th scope="col">상품ID</th>
+<!--                        <th scope="col">상품ID</th>-->
                         <th scope="col">상품명</th>
                         <th scope="col">수량</th>
                         <th scope="col">가격</th>
@@ -75,7 +75,7 @@
                     <tbody>
                     <tr th:each="cartItem, i: ${cartItems}">
                         <td th:text="${i.count}">1</td>
-                        <td th:text="${cartItem.getItem().getId()}">3번상품</td>
+<!--                        <td th:text="${cartItem.getItem().getId()}">3번상품</td>-->
                         <td th:text="${cartItem.getItem().getName()}">상품명</td>
                         <td th:text="${cartItem.getCount()}">수량</td>
                         <td th:text="${cartItem.getItem().getPrice() * cartItem.getCount()}">가격</td>
