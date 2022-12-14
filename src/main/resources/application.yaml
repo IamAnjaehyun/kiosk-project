@@ -32,7 +32,7 @@ spring:
 
   jpa:
     defer-datasource-initialization: true
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create-drop
     open-in-view: false
     show-sql: true
     properties:
@@ -61,6 +61,6 @@ spring:
   datasource:
     url: ${JAWSDB-URL}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa.hibernate.ddl-auto: update
+  jpa.hibernate.ddl-auto: create-drop
   sql.init.mode: always
   hikari.maximum-pool-size: 9
