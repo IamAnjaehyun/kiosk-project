@@ -77,7 +77,7 @@ public class OrderService {
         orderRepository.save(userOrder);
     }
 
-    // 주문 취소 기능
+    // 주문 취소 기능 사용 안함
     @Transactional
     public void orderCancel(User user, OrderItem cancelItem) {
 

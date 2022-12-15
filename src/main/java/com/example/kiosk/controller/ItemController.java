@@ -183,7 +183,7 @@ public class ItemController {
     @GetMapping("item/delete/{id}")
     public String itemDelete(@PathVariable("id") Integer id, @AuthenticationPrincipal PrincipalDetails principalDetails) {
         if(principalDetails.getUser().getRole().equals("ROLE_SELLER")) {
-            // 판매자
+            // 판매자 확인
             User user = itemService.itemView(id).getSeller();
 
             if(user.getId() == principalDetails.getUser().getId()) {
@@ -195,7 +195,7 @@ public class ItemController {
                 return "redirect:/main";
             }
         } else {
-            // 일반 회원이면 거절 -> main
+            // 일반 회원이면 상품삭제 못하고 그냥 main으로
             return "redirect:/main";
         }
     }
