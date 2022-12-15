@@ -112,21 +112,20 @@
     <div class="container px-4 px-lg-5 mt-3">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
 
-            <!-- 첫번째 아이템 -->
+            <!-- 아이템 반복문으로 꺼냄 -->
             <div class="col mb-3" th:each="item : ${items}">
                 <div class="card h-100">
-                    <!-- Product image-->
                     <img class="card-img-top" th:src="@{${item.getImgPath()}}" alt="..." />
-                    <!-- Product details-->
+                    <!--이미지 사진-->
                     <div class="card-body p-4">
                         <div class="text-center">
-                            <!-- Product name\-->
                             <h5 class="fw-bolder" th:text="${item.getName()}">아이템이름</h5>
-                            <!-- Product price-->
+                            <!--상품 이름-->
                             <p th:text="|${item.getPrice()} 원|">아이템 가격</p>
+                            <!--상품 가격-->
                         </div>
                     </div>
-                    <!-- Product actions-->
+                    <!--상세보기 - > 장바구니 담으면 됨-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/item/view/{id}(id=${item.getId()})}">상세보기</a></div>
                     </div>

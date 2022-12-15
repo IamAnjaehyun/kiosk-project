@@ -113,6 +113,13 @@
 *  파일을 저장할 때 uuid 를 사용하지 않고 MD5Generator을 사용해서 파일명을 저장하도록 변경
 
 12/13
+*  html 배너 및 상단바 수정
+*  yaml create-drop > update 로 수정
+*  관리자, 사용자 USER 추가
+*  음식사진 추가 및 실 사용가능하게 음식 등록
+
+12/14
+*  발표대비 코드 정리
 
 ## 🔗Link
 https://anjh-kiosk.herokuapp.com/
