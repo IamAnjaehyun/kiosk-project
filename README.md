@@ -93,6 +93,7 @@
 *  장바구니 서비스 제작 시작
 
 12/8
+*  https://startbootstrap.com/template/shop-homepage 템플릿 사용 
 *  메뉴 구조 변경 및 domain 수정
 *  spring security 도입으로 인해 사진을 업로드하여 뿌려줘도 인식하지 못하는 현상 발생
 *  JPA 수정하려 하였으나 실패
